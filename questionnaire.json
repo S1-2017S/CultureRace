@@ -1,0 +1,54 @@
+[
+	{
+		"question" : "age de djibril ?",
+		"reponses": [
+						"19 ans",
+						"3 ans",
+						"5 ans"
+					],
+		"br" : 0
+	}
+	,
+	{
+		"question" : "couleur du maroc ?",
+		"reponses": [
+						"blanc",
+						"bleu",
+						"noir",
+						"rouge"
+					],
+		"br" : 3
+	}
+	,
+	{
+		"question" : "age de ismael ?",
+		"reponses": [
+						"19",
+						"20",
+						"2",
+						"13"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "couleur du real ?",
+		"reponses": [
+						"blanc",
+						"bleu",
+						"noir",
+						"rouge"
+					],
+		"br" : 0
+	}
+	,
+	{
+		"question" : "ou sommes nous ?",
+		"reponses": [
+						"intech",
+						"disneyland",
+						"autre solution"
+					],
+		"br" : 2
+	}
+]

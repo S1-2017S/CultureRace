@@ -9,15 +9,22 @@
 <h1> Culture Race! </h1>
 <h3> Identification </h3>
 
-<p>Pseudo:<input type="id"></p></br>
-<p>Mot de Passe: <input type="password"></p></br>
-
-<a href="/">Connexion</a>
+<form action="/req_identifier" method="GET">
+<p>Pseudo:	<input type="text" name="pseudo" value=""</p></br>
+<p>Mot de Passe: <input type="text" name="password" value=""></p></br>
+<input type="submit" name="action" value="Connexion">
+</form>
 
 <p> Vous n'avez pas de compte? <a href ="/req_afficher_formulaire_inscription">Cliquez ici!</a>
 <style>
 h1{
 text-align: center;
 }
+body{
+background-image: url("http://cin.h-cdn.co/assets/16/18/1462451972-screen-shot-2016-05-05-at-55957-pm.png");
+background-size:cover;
+background-repeat:no-repeat;
+}
+
 </style>
 </body>

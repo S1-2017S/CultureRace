@@ -41,8 +41,8 @@ var trait = function (req, res, query) {
 
 	if(trouve === false) {
 		nouveauMembre = {};
-		nouveauMembre.compte = query.compte;
-		nouveauMembre.mdp = query.mdp;
+		nouveauMembre.pseudo = query.pseudo;
+		nouveauMembre.password = query.password;
 		listeMembres[listeMembres.length] = nouveauMembre;
 
 		contenu_fichier = JSON.stringify(listeMembres);
@@ -60,7 +60,7 @@ var trait = function (req, res, query) {
 
 		marqueurs = {};
 		marqueurs.erreur = "ERREUR : ce compte existe déjà";
-		marqueurs.compte = query.compte;
+		marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
 
 	} else {
@@ -69,8 +69,8 @@ var trait = function (req, res, query) {
 		page = fs.readFileSync('confirmation_inscription.html', 'UTF-8');
 
 		marqueurs = {};
-		marqueurs.compte = query.compte;
-		marqueurs.mdp = query.mdp;
+		marqueurs.pseudo = query.pseudo;
+		marqueurs.password = query.password;
 		page = page.supplant(marqueurs);
 	}
 

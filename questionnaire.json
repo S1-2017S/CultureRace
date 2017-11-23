@@ -1,54 +1,296 @@
 [
 	{
-		"question" : "age de djibril ?",
+		"question" : "en quelle année la france gagnais la coupe du monde ?",
 		"reponses": [
-						"19 ans",
-						"3 ans",
-						"5 ans"
+						"1997",
+						"2006",
+						"1998"
 					],
-		"br" : 0
+		"br" : 2
 	}
 	,
 	{
-		"question" : "couleur du maroc ?",
+		"question" : "Quel sont les couleur du drapeau marocain ?",
 		"reponses": [
-						"blanc",
-						"bleu",
-						"noir",
-						"rouge"
-					],
-		"br" : 3
-	}
-	,
-	{
-		"question" : "age de ismael ?",
-		"reponses": [
-						"19",
-						"20",
-						"2",
-						"13"
+						"bleu, blanc, rouge",
+						"rouge et vert",
+						"vert et blanc",
+						"rouge et blanc"
 					],
 		"br" : 1
 	}
 	,
 	{
-		"question" : "couleur du real ?",
+		"question" : "a quel age est on sexuellement majeur ?",
 		"reponses": [
-						"blanc",
-						"bleu",
-						"noir",
-						"rouge"
+						"15 ans",
+						"27 ans",
+						"18 ans",
+						"15 ans et 2 mois"
+					],
+		"br" : 3
+	}
+	,
+	{
+		"question" : "qui est le meilleur professeur de l'histoire ?",
+		"reponses": [
+						"P.Thire",
+						"Dumbledor",
+						"S.skinner",
+						"Kakashi seinsei"
 					],
 		"br" : 0
 	}
 	,
 	{
-		"question" : "ou sommes nous ?",
+		"question" : "De quel film vient la célèbre réplique imotep ?",
 		"reponses": [
-						"intech",
-						"disneyland",
-						"autre solution"
+						"Asterix et Obelix, mission cléopatre",
+						"La haine",
+						"La momie"
+					],
+		"br" : 0
+	}
+	,
+	{
+		"question" : "en quelle année hitler a atteint le pouvoir ?",
+		"reponses": [
+						"1933",
+						"1927",
+						"1937"
+					],
+		"br" : 0
+	}
+	,
+	{
+		"question" : "Qui est l'auteur de la célèbre chanson beat it ?",
+		"reponses": [
+						"Michael jackson",
+						"B.I.G",
+						"fatal bazooka"
+					],
+		"br" : 0
+	}
+	,
+	{
+		"question" : "Qui est l'auteur de 'i will always love you' ?",
+		"reponses": [
+						"Whitney Houston",
+						"Amy Winehouse",
+						"kenza farah"
+					],
+		"br" : 0
+	}
+	,
+	{
+		"question" : "Qui est l'entraineur du Real madrid ?",
+		"reponses": [
+						"Karim benzema",
+						"Zinedine Zidane",
+						"Florentino Perez"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "en quelle année est sorti le seigneur des anneaux ?",
+		"reponses": [
+						"2001",
+						"2004",
+						"1994"
+					],
+		"br" : 0
+	}
+	,
+	{
+		"question" : "En quelle année ont eu lieu les attentats du 11/09 ?",
+		"reponses": [
+						"2000",
+						"2001",
+						"2002"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Quel est le vrai nom du célèbre Mohamed Ali ?",
+		"reponses": [
+						"Ali",
+						"Cassus ",
+						"Mohamed"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "En quelle année est mort michael jackson ?",
+		"reponses": [
+						"2009",
+						"2006",
+						"2005"
+					],
+		"br" : 0
+	}
+	,
+	{
+		"question" : "De quel pays vient le célèbre chanteur Maitre gims ?",
+		"reponses": [
+						"Congo",
+						"Cameroun",
+						"Somalie"
+					],
+		"br" : 0
+	}
+	,
+	{
+		"question" : "De quel pays est originaire Omar Sy ?",
+		"reponses": [
+						"Senegal",
+						"Cote d'ivoire",
+						"Guinée Konacry"
+					],
+		"br" : 0
+	}
+	,
+	{
+		"question" : "Quel est le premier pokemon qu'a eu sacha ?",
+		"reponses": [
+						"Carabaffe",
+						"Dracofeu",
+						"Pikachu"
 					],
 		"br" : 2
+	}
+	,
+	{
+		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"reponses": [
+						"Islam",
+						"Boudhisme",
+						"Judaisme",
+						"Christianisme"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Quel est le nom du druide du village d'Astérix?",
+		"reponses": [
+						"Assurancetourix",
+						"Panoramix",
+						"Asterix",
+						"Abraracourcix"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Quel feuille se trouve au centre du drapeau canadien?",
+		"reponses": [
+						"erable",
+						"chêne",
+						"noisetier",
+						"cerisier"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"reponses": [
+						"Islam",
+						"Boudhisme",
+						"Judaisme",
+						"Christianisme"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"reponses": [
+						"Islam",
+						"Boudhisme",
+						"Judaisme",
+						"Christianisme"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"reponses": [
+						"Islam",
+						"Boudhisme",
+						"Judaisme",
+						"Christianisme"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"reponses": [
+						"Islam",
+						"Boudhisme",
+						"Judaisme",
+						"Christianisme"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"reponses": [
+						"Islam",
+						"Boudhisme",
+						"Judaisme",
+						"Christianisme"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"reponses": [
+						"Islam",
+						"Boudhisme",
+						"Judaisme",
+						"Christianisme"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"reponses": [
+						"Islam",
+						"Boudhisme",
+						"Judaisme",
+						"Christianisme"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"reponses": [
+						"Islam",
+						"Boudhisme",
+						"Judaisme",
+						"Christianisme"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"reponses": [
+						"Islam",
+						"Boudhisme",
+						"Judaisme",
+						"Christianisme"
+					],
+		"br" : 1
 	}
 ]

@@ -31,8 +31,8 @@ var trait = function (req, res, query) {
 	trouve = false;
 	i = 0;
 	while(i<listeMembres.length && trouve === false) {
-		if(listeMembres[i].compte === query.compte) {
-			if(listeMembres[i].mdp === query.mdp) {
+		if(listeMembres[i].pseudo === query.pseudo) {
+			if(listeMembres[i].password === query.password) {
 				trouve = true;
 			}
 		}
@@ -48,7 +48,7 @@ var trait = function (req, res, query) {
 
 		marqueurs = {};
 		marqueurs.erreur = "ERREUR : compte ou mot de passe incorrect";
-		marqueurs.compte = query.compte;
+		marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
 
 	} else {
@@ -57,7 +57,7 @@ var trait = function (req, res, query) {
 		page = fs.readFileSync('accueil_membre.html', 'UTF-8');
 
 		marqueurs = {};
-		marqueurs.compte = query.compte;
+		marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
 	}
 

@@ -31,7 +31,7 @@ var trait = function (req, res, query) {
 	trouve = false;
 	i = 0;
 	while(i<listeMembres.length && trouve === false) {
-		if(listeMembres[i].compte === query.compte) {
+		if(listeMembres[i].pseudo === query.pseudo) {
 			trouve = true;
 		}
 		i++;

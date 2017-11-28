@@ -22,6 +22,7 @@ var trait = function (req, res, query) {
 	var trouve;
 	var listeConnectes = [];
 	var nouveauConnectes;
+	var pseudo;
 
 	// ON LIT LES COMPTES EXISTANTS
 
@@ -67,6 +68,7 @@ var trait = function (req, res, query) {
 
 		nouveauConnectes = {};
 		nouveauConnectes.pseudo = query.pseudo;
+		nouveauConnectes.etat = "LIBRE";
 		listeConnectes.push(nouveauConnectes);
 		
 		contenu_fichier = JSON.stringify(listeConnectes);

@@ -58,7 +58,7 @@ var trait = function (req, res, query) {
 
 		page = fs.readFileSync('accueil_membre.html', 'UTF-8');
 
-		marqueurs = {};
+		marqueurs  = {};
 		marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
 

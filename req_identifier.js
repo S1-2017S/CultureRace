@@ -20,6 +20,8 @@ var trait = function (req, res, query) {
 	var listeMembres;
 	var i;
 	var trouve;
+	var listeConnectes = [];
+	var nouveauConnectes;
 
 	// ON LIT LES COMPTES EXISTANTS
 
@@ -59,6 +61,17 @@ var trait = function (req, res, query) {
 		marqueurs = {};
 		marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
+
+		contenu_fichier = fs.readFileSync("connectes.json", 'utf-8');    
+		listeConnectes = JSON.parse(contenu_fichier);
+
+		nouveauConnectes = {};
+		nouveauConnectes.pseudo = query.pseudo;
+		listeConnectes.push(nouveauConnectes);
+		
+		contenu_fichier = JSON.stringify(listeConnectes);
+		fs.writeFileSync("connectes.json", contenu_fichier, 'UTF-8');
+
 	}
 
 	res.writeHead(200, {'Content-Type': 'text/html'});

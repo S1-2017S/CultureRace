@@ -207,90 +207,112 @@
 	}
 	,
 	{
-		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"question" : "Lequel de ces 3 personnages n'a pas été président ?",
 		"reponses": [
-						"Islam",
-						"Boudhisme",
-						"Judaisme",
-						"Christianisme"
+						"F.Fillon",
+						"J.Chirac",
+						"E.Macron",
+						"J-M Le Pen"
+					],
+		"br" : 3
+	}
+	,
+	{
+		"question" : "Qui a écrit les misérables?",
+		"reponses": [
+						"P.verlaine",
+						"V.Hugo",
+						"Robespierre",
+						"JUL"
 					],
 		"br" : 1
 	}
 	,
 	{
-		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"question" : "Qui a inventé les ordinateurs ?",
 		"reponses": [
-						"Islam",
-						"Boudhisme",
-						"Judaisme",
-						"Christianisme"
+						"Einstein",
+						"Les Curie",
+						"A.Turing",
+						"Thalès"
+					],
+		"br" : 2
+	}
+	,
+	{
+		"question" : "Quel est le n°1 des ventes dans le  monde informatique ?",
+		"reponses": [
+						"Lenovo",
+						"Acer",
+						"Asus",
+						"Apple"
+					],
+		"br" : 3
+	}
+	,
+	{
+		"question" : "Qui est le n°1 des ventes en telephonie ?",
+		"reponses": [
+						"Samsung",
+						"Acer",
+						"Apple",
+						"Nokia"
+					],
+		"br" : 0
+	}
+	,
+	{
+		"question" : "Qui a écrit Les fourberies de Scapin ?",
+		"reponses": [
+						"Molière",
+						"Racine",
+						"Corneille",
+						"Bridou"
 					],
 		"br" : 1
 	}
 	,
 	{
-		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"question" : "Qui est le président des etats-unis ?",
 		"reponses": [
-						"Islam",
-						"Boudhisme",
-						"Judaisme",
-						"Christianisme"
+						"Obama",
+						"Trump",
+						"Macron",
+						"Bush"
 					],
 		"br" : 1
 	}
 	,
 	{
-		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"question" : "Qui ont des chapeaux ronds ?",
 		"reponses": [
-						"Islam",
-						"Boudhisme",
-						"Judaisme",
-						"Christianisme"
+						"Catalans",
+						"Auvergnats",
+						"Bretons",
+						"Gaulois"
+					],
+		"br" : 2
+	}
+	,
+	{
+		"question" : "Qui a construit la tour eiffel ?",
+		"reponses": [
+						"Leon Blum",
+						"Gustave eiffel",
+						"José eiffel",
+						"Gaston eiffel"
 					],
 		"br" : 1
 	}
 	,
 	{
-		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"question" : "Qui est le courreur le plus rapide de l'histoire ?",
 		"reponses": [
-						"Islam",
-						"Boudhisme",
-						"Judaisme",
-						"Christianisme"
+						"Usain Bolt",
+						"Jason Blake",
+						"Asapha Powell",
+						"Stevens"
 					],
-		"br" : 1
-	}
-	,
-	{
-		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
-		"reponses": [
-						"Islam",
-						"Boudhisme",
-						"Judaisme",
-						"Christianisme"
-					],
-		"br" : 1
-	}
-	,
-	{
-		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
-		"reponses": [
-						"Islam",
-						"Boudhisme",
-						"Judaisme",
-						"Christianisme"
-					],
-		"br" : 1
-	}
-	,
-	{
-		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
-		"reponses": [
-						"Islam",
-						"Boudhisme",
-						"Judaisme",
-						"Christianisme"
-					],
-		"br" : 1
+		"br" : 0
 	}
 ]

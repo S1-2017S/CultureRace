@@ -20,8 +20,8 @@ var trait = function (req, res, query) {
 	page = fs.readFileSync('accueil.html', 'utf-8');
 
 	marqueurs = {};
-	marqueurs.erreur = "";
-	marqueurs.compte = "";
+	marqueurs.erreur = "ERREUR";
+	marqueurs.compte = "ERREUR:votre mot de passe ou votre pseudo doit contenir une erreur";
 	page = page.supplant(marqueurs);
 
 	res.writeHead(200, {'Content-Type': 'text/html'});

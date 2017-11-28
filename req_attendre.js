@@ -1,8 +1,10 @@
-//=========================================================================
+//====================================================================
 // Traitement de "req_attendre"
-// Auteur : Achraf, Djibril, ISmael
-// Version : 23/11/2017
-//=========================================================================
+// Auteur : Achraf, Djibril, Ismael
+// Version : 27/11/2017
+//====================================================================
+
+"use strict"
 
 "use strict";
 
@@ -11,45 +13,54 @@ require('remedial');
 
 var trait = function (req, res, query) {
 
-	var joueur;
-	var page;
+	var marqueurs;
+	var page
+	var membre;
+	var contenu_fichier;
+	var listeConnectes;
+	var i;
 	var trouve;
 
-	// ON VERIFIE LE NOMBRE DE JOUEURS
-    
-	joueur = 0
-	trouve = false;
+	// ON LIT LES JOUEURS CONNECTES
+
+	contenu_fichier = fs.readFileSync("connectes.json", 'utf-8');
+	listeConnectes = JSON.parse(contenu_fichier);
+
+	// ON VERIFIE SI QUELQU'UN EST DEJA CONNECTE 
 	
-	while(joueur < 1 && trouve === false){
-	     if(joueur === 1) {
-		    trouve = true;
-			}
-	}	
+	trouve = true;
+	if(listeConnectes.length === 1) {
+		trouve = false;
+	}
 
 	// ON RENVOIT UNE PAGE HTML 
-
-	if(trouve === false) {
+		// SI PERSONNE DANS DE CONNECTE, ALORS LE JOUEUR EST REDIRIGE VERS LA SALLE D'ATTENTE
 		
-		// SI PAS DE JOUEUR
-
-		page = fs.readFileSync('salle_attente.html', 'UTF-8');
-        
-		joueur++
+		if(trouve === false) {
+		page = fs.readFileSync('salle_attente.html');
+		
+		marqueurs = {};
+		marqueurs.erreur = "";
+		marqueurs.pseudo = query.pseudo;
+		page = page.supplant(marqueurs);
 
 	} else {
-		// SI DEJA JOUEUR
+		// SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE, ALORS LE JOUEUE EST REDIRIGE VERS LA PAGE JOUEUR PASSIF
 
 		page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 
-		joueur--
+		marqueurs  = {};
+        marqueurs.pseudo = query.pseudo;
+		page = page.supplant(marqueurs);
+
+
 	}
 
 	res.writeHead(200, {'Content-Type': 'text/html'});
-	res.write(page);
+	res.write(page)
 	res.end();
 };
 
-//---------------------------------------------------------------------------
+//-------------------------------------------------------------------------
 
 module.exports = trait;
-

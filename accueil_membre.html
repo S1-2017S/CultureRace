@@ -6,9 +6,10 @@
 </head>
 <body>
 <h1> Culture Race!</h1>
-
-<button type="jouer"> Jouer</button><br>
-<button type="aide"> Aide</button><br>
+<form action="/req_attendre" method="GET">
+<button name = "pseudo" name ="pseudo" value = "{pseudo}">Jouer</button>
+</form>
+<button type="aide" name ="help" value = aide> Aide</button><br>
 <button type="quitter"> Quitter</button><br>
 <footer><p class="best_score">Meilleur score: <span id=""></span> par <span id=""></span>!</p>
 </footer> 

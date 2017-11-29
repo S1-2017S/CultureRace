@@ -35,15 +35,14 @@ var trait = function (req, res, query) {
 	
 	trouve = true;
 	if(salleAttente.length === 0) {
-		salleAttente.push(listeConnectes[listeConnectes.length]);
-		listeConnectes[listeConnectes.length] = "ATTENTE";
+		salleAttente.push(listeConnectes[listeConnectes.length-1]);
+		//listdeConnectes[listeConnectes.length] = "ATTENTE";
 	
 
 	// ON RENVOIT UNE PAGE HTML 
 		// LE JOUEUR EST REDIRIGE VERS LA SALLE D'ATTENTE
 
 		page = fs.readFileSync('salle_attente.html');
-		
 
 		contenu_SA = JSON.stringify(salleAttente);
 		fs.writeFileSync("salleAttente.json", contenu_SA, 'UTF-8');
@@ -60,7 +59,6 @@ var trait = function (req, res, query) {
         marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
 		
-
 
 	}
 

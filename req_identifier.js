@@ -17,7 +17,8 @@ var trait = function (req, res, query) {
 	var page;
 	var membre;
 	var contenu_fichier;
-	var listeMembres;
+	var contenu_co;
+	var listeMembres = [];
 	var i;
 	var trouve;
 	var listeConnectes = [];
@@ -57,22 +58,34 @@ var trait = function (req, res, query) {
 	} else {
 		// SI IDENTIFICATION OK, ON ENVOIE PAGE ACCUEIL MEMBRE
 
-		page = fs.readFileSync('accueil_membre.html', 'UTF-8');
+		contenu_co = fs.readFileSync("connectes.json", 'utf-8');    
+		listeConnectes = JSON.parse(contenu_co);
 
-		marqueurs  = {};
-		marqueurs.pseudo = query.pseudo;
-		page = page.supplant(marqueurs);
+		trouve = false;
+		for(i=0; i<listeConnectes.length && trouve === false; i++) {
+			if(listeConnectes[i].pseudo === query.pseudo) {
+					trouve = true;
+			}
+		}
 
-		contenu_fichier = fs.readFileSync("connectes.json", 'utf-8');    
-		listeConnectes = JSON.parse(contenu_fichier);
+		if(trouve === false) {
 
 		nouveauConnectes = {};
 		nouveauConnectes.pseudo = query.pseudo;
 		nouveauConnectes.etat = "LIBRE";
 		listeConnectes.push(nouveauConnectes);
 		
-		contenu_fichier = JSON.stringify(listeConnectes);
-		fs.writeFileSync("connectes.json", contenu_fichier, 'UTF-8');
+		contenu_co = JSON.stringify(listeConnectes);
+		fs.writeFileSync("connectes.json", contenu_co, 'UTF-8');
+		page = fs.readFileSync('accueil_membre.html', 'UTF-8');
+
+		} else {
+
+		marqueurs  = {};
+		marqueurs.pseudo = query.pseudo;
+		page = fs.readFileSync('accueil_membre.html', 'UTF-8');
+
+	}
 
 	}
 

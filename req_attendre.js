@@ -59,6 +59,7 @@ var trait = function (req, res, query) {
 		marqueurs  = {};
         marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
+		
 
 
 	}

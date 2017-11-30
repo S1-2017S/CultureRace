@@ -11,6 +11,8 @@ require('remedial');
 
 var trait = function (req, res, query) {
    
+    var listeConnectes = [];
+    var membreConnectes;
 
     // ON AFFICHE L'ACCUEIL	
 
@@ -18,11 +20,11 @@ var trait = function (req, res, query) {
     
 	contenu_fichier = fs.readFileSync('connectes.json', 'UTF-8');
 	listeConnectes = JSON.parse(contenu_fichier);
+    
+	membreConnectes = {};
+	membreConnectes.pseudo = query.pseudo;
+    listeConnectes.splice(membreConnectes);
 
-	nouveauConnectes = {};
-	nouveauConnectes.etat = "DECONNECTE"
-	listeConnectes.push(nouveau.Connectes);
-	
 	res.writeHead(200, {'Content-Type': 'text/html'});
 	res.write(page);
 	res.end();
@@ -30,4 +32,4 @@ var trait = function (req, res, query) {
 
 //==========================================================================
 
-module.exports = traits;
+module.exports = trait;

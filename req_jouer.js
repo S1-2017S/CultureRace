@@ -12,8 +12,12 @@ require('remedial');
 var trait = function (req, res, query) {
 
     var marqueurs;
+	var page;
+	var contenu_fichier;
+	var salleAttente = [];
 
-	    page = fs.readFileSync('joueur_actif.html', 'UTF-8');
+
+	page = fs.readFileSync('joueur_actif.html', 'UTF-8');
 
 
 	res.writeHead(200, {'Content-Type': 'text/html'});

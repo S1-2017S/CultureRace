@@ -19,6 +19,7 @@ var req_afficher_formulaire_inscription = require("./req_afficher_formulaire_ins
 var req_inscrire = require("./req_inscrire.js");
 var req_identifier = require("./req_identifier.js");
 var req_attendre = require("./req_attendre.js");
+var req_jouer = require("./req_jouer.js");
 var req_static = require("./req_static.js");
 var req_erreur = require("./req_erreur.js");
 
@@ -57,6 +58,9 @@ var traite_requete = function (req, res) {
 				break;
 			case '/req_attendre':
 				req_attendre(req, res, query);
+				break;
+			case '/req_jouer':
+				req_jouer(req, res, query);
 				break;
 			default:
 				req_static(req, res, pathname);

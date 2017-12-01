@@ -13,13 +13,15 @@
 <div class="wrap"<p> Position 1: nom_joueur</p>
 <p> Position 2: nom_joueur</p></br>
 
-<p>Question : LolWtf</p></br>
+<p>Question : {question}</p></br>
+<form action="req_analyser" method="GET">
 
-<a href=""><button type="button"><p>éponse A</p></button></a>
-<a href=""><button type="button"><p>Réponse B</p></button></a>
-<a href=""><button type="button"><p>Réponse C</p></button></a>
-<a href=""><button type="button"><p>Réponse D</p></button></a>
+<button name ="reponse1" value="reponse"><p>{reponses1}</p></button>
+<button name ="reponse2" value="reponse"><p> {reponses2}</p></button>
+<button name ="reponse3" value="reponse"><p> {reponses3}</p></button>
+<button name ="reponse4" value="reponse"><p> {reponses4}</p></button>
 <p><i> Veuillez répondre à la question</i></p>
+</form>
 </div>
 
 <style>

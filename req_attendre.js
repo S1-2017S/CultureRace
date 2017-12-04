@@ -55,9 +55,15 @@ var trait = function (req, res, query) {
 
 		// SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE, ALORS LE JOUEUE EST REDIRIGE VERS LA PAGE JOUEUR PASSIF
 	} else {
-		
-		page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 
+		salleAttente.splice(salleAttente[i], 1);
+
+		contenu_SA = JSON.stringify(salleAttente);
+		fs.writeFileSync("salleAttente.json", contenu_SA, 'UTF-8');
+
+		console.log(salleAttente)
+		page = fs.readFileSync('joueur_passif.html', 'UTF-8');
+		
 		marqueurs  = {};
         marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);

@@ -25,13 +25,14 @@ var trait = function (req, res, query) {
 	contenu_fichier = fs.readFileSync('connectes.json', 'UTF-8');
 	listeConnectes = JSON.parse(contenu_fichier);
     
+
 	for(i=0; i<listeConnectes.length; i++) {
 		if(query.pseudo === listeConnectes[i].pseudo) {
-		listeConnectes.splice(listeConnectes[i]);
+			console.log(query.pseudo);
+			console.log(listeConnectes[i]);
+			listeConnectes.splice(i, 1);
 		}
 	}
-	console.log(query.pseudo);
-	console.log(listeConnectes[0]);
 
 	contenu_fichier = JSON.stringify(listeConnectes);
 	fs.writeFileSync("connectes.json", contenu_fichier, 'UTF-8');

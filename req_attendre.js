@@ -21,6 +21,7 @@ var trait = function (req, res, query) {
 	var trouve;
 	var n;
 	var contenu_SA;
+	var nouveauSalleAttente;
 
 	// ON LIT LES JOUEURS CONNECTES ET LA SALLE D'ATTENTE
 
@@ -30,12 +31,15 @@ var trait = function (req, res, query) {
 	contenu_SA = fs.readFileSync("salleAttente.json", 'UTF-8');
 	salleAttente = JSON.parse(contenu_SA);
 
+	nouveauSalleAttente = {};
+    nouveauSalleAttente.pseudo = query.pseudo;
+    nouveauSalleAttente.etat = "ATTENTE";
+
 	// ON VERIFIE SI QUELQU'UN EST DEJA CONNECTE 
 
 	if(salleAttente.length === 0) {
-		listeConnectes[listeConnectes.length-1].etat = "ATTENTE";
-		salleAttente.push(listeConnectes[listeConnectes.length-1]);
-	
+		salleAttente.push(nouveauSalleAttente);
+		
 
 	// ON RENVOIT UNE PAGE HTML 
 		// LE JOUEUR EST REDIRIGE VERS LA SALLE D'ATTENTE

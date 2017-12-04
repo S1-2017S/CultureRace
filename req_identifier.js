@@ -71,6 +71,7 @@ var trait = function (req, res, query) {
 		if(trouve === false) {
 
 		page = fs.readFileSync('accueil_membre.html', 'UTF-8');
+
 		nouveauConnectes = {};
 		nouveauConnectes.pseudo = query.pseudo;
 		nouveauConnectes.etat = "LIBRE";

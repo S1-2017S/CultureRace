@@ -7,6 +7,7 @@
 "use strict"
 
 var fs = require("fs");
+var page 
 require('remedial');
 
 var trait = function (req, res, query) {

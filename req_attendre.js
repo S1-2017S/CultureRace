@@ -22,6 +22,7 @@ var trait = function (req, res, query) {
 	var n;
 	var contenu_SA;
 	var nouveauSalleAttente;
+	var nouvellePartie;
 
 	// ON LIT LES JOUEURS CONNECTES ET LA SALLE D'ATTENTE
 
@@ -52,6 +53,13 @@ var trait = function (req, res, query) {
 		marqueurs  = {};
         marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
+
+		nouvellePartie = {};
+		nouvellePartie.question;
+		nouvellePartie.points;
+		fs.writeFileSync("partie"+query.pseudo+".json", nouvellePartie, 'UTF-8')
+
+		
 
 		// SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE, ALORS LE JOUEUE EST REDIRIGE VERS LA PAGE JOUEUR PASSIF
 	} else {

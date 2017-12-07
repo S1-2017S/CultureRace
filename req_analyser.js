@@ -18,8 +18,12 @@ var trait = function (req, res, query) {
 	var contenu_fichier;
 	var monQuestionnaire = [];
 	var maPartie = [];
+	var nouvellePartie;
 	var i;
 	var n;
+	var ns;
+	var rep;
+	var bonRep;
 
 	// ON VERIFIE SI LE JOUEUR A ENTRER LA BONNE REPONSE
 
@@ -29,20 +33,23 @@ var trait = function (req, res, query) {
 	contenu_fichier = fs.readFileSync("partie"+query.pseudo+".json", 'UTF-8');
 	maPartie = JSON.parse(contenu_fichier);
 
-	n = maPartie.question;
+	n = maPartie[0].question;
 
-	if(query.reponse === monQuestionnaire[n].br) {
+	rep = Number(query.reponse);
+	bonRep = Number(monQuestionnaire[n].br);
 
-		nouvellePartie = {};
+	if(rep === bonRep) {
+
+	nouvellePartie = {};
 	nouvellePartie.question = n;
-	nouvellePartie.points = maPartie.points + 1;
+	nouvellePartie.points = Number(maPartie[0].points) + 1;
 
-	maPartie.push(nouvellePartie);
+	maPartie[0] = nouvellePartie;
 
 	contenu_fichier = JSON.stringify(maPartie);
-	fs.writeFileSync("partie"+query.pseudo+".json", maPartie, 'UTF-8');
+	fs.writeFileSync("partie"+query.pseudo+".json", contenu_fichier, 'UTF-8');
 
-	page = readFileSync('joueur_passif.html', 'UTF-8');
+	page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 
 	marqueurs = {};
 	marqueurs.pseudo = query.pseudo;
@@ -50,7 +57,7 @@ var trait = function (req, res, query) {
 
 } else {
 
-	page = readFileSync('joueur_passif.html', 'UTF-8');
+	page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 
 	marqueurs = {};
 	marqueurs.pseudo = query.pseudo;

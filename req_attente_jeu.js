@@ -52,13 +52,14 @@ var trait = function (req, res, query) {
 		maPartie = JSON.parse(contenu_partie);
 
 		nouvellePartie = {};
-		nouvellePartie.question = n;
-		nouvellePartie.points = Number("0");
+		nouvellePartie.J1question = n;
+		nouvellePartie.J1points = 0;
 
-		maPartie.push(nouvellePartie);
+		maPartie[1] = nouvellePartie;
 
 		contenu_partie = JSON.stringify(maPartie);
 		fs.writeFileSync("partie"+query.pseudo+".json", contenu_partie, 'UTF-8');
+
 		marqueurs = {};
 		marqueurs.pseudo = query.pseudo
 		page = page.supplant(marqueurs);

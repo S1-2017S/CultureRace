@@ -18,7 +18,8 @@ var trait = function (req, res, query) {
 	var contenu_fichier;
 	var monQuestionnaire = [];
 	var maPartie = [];
-	var nouvellePartie;
+	var nouvellePartieJoueur1;
+	var nouvellePartieJoueur2;
 	var i;
 	var n;
 	var ns;
@@ -33,18 +34,18 @@ var trait = function (req, res, query) {
 	contenu_fichier = fs.readFileSync("partie"+query.pseudo+".json", 'UTF-8');
 	maPartie = JSON.parse(contenu_fichier);
 
-	n = maPartie[0].question;
+	n = maPartie[1].J1question;
 
 	rep = Number(query.reponse);
 	bonRep = Number(monQuestionnaire[n].br);
 
 	if(rep === bonRep) {
 
-	nouvellePartie = {};
-	nouvellePartie.question = n;
-	nouvellePartie.points = Number(maPartie[0].points) + 1;
+	nouvellePartieJoueur1 = {};
+	nouvellePartieJoueur1.J1question = n;
+	nouvellePartieJoueur1.J1points = Number(maPartie[1].J1points) + 1;
 
-	maPartie[0] = nouvellePartie;
+	maPartie[1] = nouvellePartieJoueur1;
 
 	contenu_fichier = JSON.stringify(maPartie);
 	fs.writeFileSync("partie"+query.pseudo+".json", contenu_fichier, 'UTF-8');

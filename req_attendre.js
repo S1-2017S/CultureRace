@@ -22,7 +22,11 @@ var trait = function (req, res, query) {
 	var n;
 	var contenu_SA;
 	var nouveauSalleAttente;
-	var nouvellePartie;
+	var nouvellePartieJoueur1;
+	var nouvellePartieJoueur2;
+	var maPartie = [];
+	var contenu_partie;
+	var tourJoueur;
 
 	// ON LIT LES JOUEURS CONNECTES ET LA SALLE D'ATTENTE
 
@@ -54,7 +58,27 @@ var trait = function (req, res, query) {
 		marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
 
-		fs.writeFileSync("partie"+query.pseudo+".json", "[]", 'UTF-8');
+		//fs.writeFileSync("partie"+query.pseudo+".json", "[]", 'UTF-8');
+		tourJoueur = {};
+		tourJoueur.tour = 0;
+
+		maPartie.push(tourJoueur);
+
+		nouvellePartieJoueur1 = {};
+		nouvellePartieJoueur1.J1question = "";
+		nouvellePartieJoueur1.J1points = 0;
+
+		maPartie.push(nouvellePartieJoueur1);
+
+		nouvellePartieJoueur2 = {};
+		nouvellePartieJoueur2.J2question = "";
+		nouvellePartieJoueur2.J2points = 0;
+
+		maPartie.push(nouvellePartieJoueur2);
+
+
+		contenu_partie = JSON.stringify(maPartie);
+		fs.writeFileSync("partie"+query.pseudo+".json", contenu_partie, 'UTF-8');
 
 
 
@@ -71,6 +95,15 @@ var trait = function (req, res, query) {
 		marqueurs  = {};
 		marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
+
+		//nouvellePartie = {};
+		//nouvellePartie.J2question = "";
+		//nouvellePartie.J2points = 0;
+
+		//maPartie.push(nouvellePartie);
+
+		//contenu_partie = JSON.stringify(maPartie);
+		//fs.writeFileSync("partie"+query.pseudo+"json", contenu_partie, 'UTF-8');
 
 	}
 

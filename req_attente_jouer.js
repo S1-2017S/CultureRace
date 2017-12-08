@@ -23,18 +23,19 @@ var trait = function (req, res, query) {
 
 	// ON REDIRIGE EN JOUEUR ACTIF
 
-	if(tour === 0) {
 		contenu_questionnaire = fs.readFileSync("questionnaire.json", "UTF-8");
 		monQuestionnaire = JSON.parse(contenu_questionnaire);
 
 		contenu_partie = fs.readFileSync("partie"+query.pseudo+".json", "UTF-8");
 		maPartie = JSON.parse(contenu_fichier);
 
+	if(tour === 0) {
+
 		n = Math.floor(Math.random() * (monQuestionnaire.length)-1);
 
 		questionnaire = {};
 		questionnaire.question = monQuestionnaire[n].question
-			questionnaire.reponses1 = monQuestionnaire[n].reponses[0];
+		questionnaire.reponses1 = monQuestionnaire[n].reponses[0];
 		questionnaire.reponses2 = monQuestionnaire[n].reponses[1];
 		questionnaire.reponses3 = monQuestionnaire[n].reponses[2];
 		questionnaire.reponses4 = monQuestionnaire[n].reponses[3];
@@ -50,13 +51,9 @@ var trait = function (req, res, query) {
 
 		page = page.supplant(marqueurs);
 
+		page = fs.readFileSync('joueur_actif', 'UTF-8');
+
 	}else{
-
-	    contenu_questionnaire = fs.readFileSync("questionnaire.json", "UTF-8");
-		monQuestionnaire = JSON.parse(contenu_questionnaire);
-
-		contenu_partie = fs.readFileSync("partie"+œ".json", "UTF-8");
-		maPartie = JSON.parse(contenu_fichier);
 
         n = Math.floor(Math.random() * (monQuestionnaire.length)-1);
 
@@ -77,12 +74,13 @@ var trait = function (req, res, query) {
 		marqueurs.pseudo = query.pseudo;
 
 		page = page.supplant(marqueurs);
+		page = fs.readFileSync('joueur_actif', 'UTF-8');
 
-
+}
         res.writeHead(200 ( {"content type": "text/html"};
 		res.write(page);
 		res.end();
 
 //============================================================================
-
+}
 module.exports = traits;

@@ -25,6 +25,7 @@ var trait = function (req, res, query) {
 	var ns;
 	var rep;
 	var bonRep;
+	var tour;
 
 	// ON VERIFIE SI LE JOUEUR A ENTRER LA BONNE REPONSE
 
@@ -33,38 +34,90 @@ var trait = function (req, res, query) {
 
 	contenu_fichier = fs.readFileSync("partie"+query.pseudo+".json", 'UTF-8');
 	maPartie = JSON.parse(contenu_fichier);
+	
+	tour = Number(maPartie[0].tour);
 
-	n = maPartie[1].J1question;
+	if(tour === 0) {
 
-	rep = Number(query.reponse);
-	bonRep = Number(monQuestionnaire[n].br);
+		n = maPartie[1].J1question;
 
-	if(rep === bonRep) {
+		rep = Number(query.reponse);
+		bonRep = Number(monQuestionnaire[n].br);
 
-	nouvellePartieJoueur1 = {};
-	nouvellePartieJoueur1.J1question = n;
-	nouvellePartieJoueur1.J1points = Number(maPartie[1].J1points) + 1;
+		if(rep === bonRep) {
 
-	maPartie[1] = nouvellePartieJoueur1;
+			nouvellePartieJoueur1 = {};
+			nouvellePartieJoueur1.J1question = n;
+			nouvellePartieJoueur1.J1points = Number(maPartie[1].J1points) + 1;
 
-	contenu_fichier = JSON.stringify(maPartie);
-	fs.writeFileSync("partie"+query.pseudo+".json", contenu_fichier, 'UTF-8');
+			maPartie[1] = nouvellePartieJoueur1;
+			maPartie[0].tour = 1
 
-	page = fs.readFileSync('joueur_passif.html', 'UTF-8');
+			contenu_fichier = JSON.stringify(maPartie);
+			fs.writeFileSync("partie"+query.pseudo+".json", contenu_fichier, 'UTF-8');
 
-	marqueurs = {};
-	marqueurs.pseudo = query.pseudo;
-	page = page.supplant(marqueurs);
+			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 
-} else {
+			marqueurs = {};
+			marqueurs.pseudo = query.pseudo;
+			page = page.supplant(marqueurs);
 
-	page = fs.readFileSync('joueur_passif.html', 'UTF-8');
+			} else {
 
-	marqueurs = {};
-	marqueurs.pseudo = query.pseudo;
-	page = page.supplant(marqueurs);
+			maPartie[0].tour = 1
 
-}
+			contenu_fichier = JSON.stringify(maPartie);
+			fs.writeFileSync("partie"+query.pseudo+".json", contenu_fichier, 'UTF-8');
+
+			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
+
+			marqueurs = {};
+			marqueurs.pseudo = query.pseudo;
+			page = page.supplant(marqueurs);
+
+			}
+
+		} else {
+
+		n = maPartie[2].J2question;
+
+		rep = Number(query.reponse);
+		bonRep = Number(monQuestionnaire[n].br);
+
+		if(rep === bonRep) {
+
+			nouvellePartieJoueur2 = {};
+			nouvellePartieJoueur2.J2question = n;
+			nouvellePartieJoueur2.J2points = Number(maPartie[2].J2points) + 1;
+
+			maPartie[2] = nouvellePartieJoueur2;
+			maPartie[0].tour = 0;
+
+			contenu_fichier = JSON.stringify(maPartie);
+			fs.writeFileSync("partie"+query.pseudo+".json", contenu_fichier, 'UTF-8');
+
+			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
+
+			marqueurs = {};
+			marqueurs.pseudo = query.pseudo;
+			page = page.supplant(marqueurs);
+
+			} else {
+
+			maPartie[0].tour = 0;
+
+			contenu_fichier = JSON.stringify(maPartie);
+			fs.writeFileSync("partie"+query.pseudo+".json", contenu_fichier, 'UTF-8');
+
+			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
+
+			marqueurs = {};
+			marqueurs.pseudo = query.pseudo;
+			page = page.supplant(marqueurs);
+
+			}
+		
+		}
 
 res.writeHead(200, {'Content-Type': 'text/html'});
 res.write(page);

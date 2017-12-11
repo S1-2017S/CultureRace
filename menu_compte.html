@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset ="UTF-8">
+	<title>Menu compte</title>
+</head>
+<body>
+<h1>Menu Comptes</h1>
+<p> Pseudo: {pseudo}<br></p>
+<p> Mot de passe actuel: {password}<br></p>
+
+{modifie}
+
+<form action ="req_modifier_compte" method="GET">
+<p>Nouveau mot de passe: <input type="text" name="password"></p></br>
+<input type="hidden" name="pseudo" value="{pseudo}">
+<input type="submit" name="action" value="Modifier">
+</form>
+
+<form action ="req_confirmer_suppression" method="GET">
+<input type="hidden" name="pseudo" value="{pseudo}">
+<input type="submit" name="action" value="Supprimer">
+</form>
+</body>

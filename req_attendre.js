@@ -13,7 +13,7 @@ var trait = function (req, res, query) {
 
 	var marqueurs;
 	var page
-	var membre;
+		var membre;
 	var contenu_fichier;
 	var listeConnectes = [];
 	var salleAttente = [];
@@ -73,6 +73,7 @@ var trait = function (req, res, query) {
 		nouvellePartieJoueur2 = {};
 		nouvellePartieJoueur2.J2question = "";
 		nouvellePartieJoueur2.J2points = 0;
+		nouvellePartieJoueur2.adv = query.pseudo;
 
 		maPartie.push(nouvellePartieJoueur2);
 

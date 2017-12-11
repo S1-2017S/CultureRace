@@ -15,11 +15,12 @@
 
 <p>Question : {question}</p></br>
 <form action="req_analyser" method="GET">
+<input type ="hidden" name ="pseudo" value="{pseudo}">
 
-<button name ="reponse1" value="reponse"><p>{reponses1}</p></button>
-<button name ="reponse2" value="reponse"><p> {reponses2}</p></button>
-<button name ="reponse3" value="reponse"><p> {reponses3}</p></button>
-<button name ="reponse4" value="reponse"><p> {reponses4}</p></button>
+<button name ="reponse" value="0"><p>{reponses1}</p></button>
+<button name ="reponse" value="1"><p> {reponses2}</p></button>
+<button name ="reponse" value="2"><p> {reponses3}</p></button>
+<button name ="reponse" value="3"><p> {reponses4}</p></button>
 <p><i> Veuillez répondre à la question</i></p>
 </form>
 </div>

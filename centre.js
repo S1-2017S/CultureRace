@@ -19,11 +19,12 @@ var req_afficher_formulaire_inscription = require("./req_afficher_formulaire_ins
 var req_inscrire = require("./req_inscrire.js");
 var req_identifier = require("./req_identifier.js");
 var req_attendre = require("./req_attendre.js");
-var req_jouer = require("./req_jouer.js");
+var req_attente_jeu = require("./req_attente_jeu.js");
 var req_static = require("./req_static.js");
 var req_deconnecter = require("./req_deconnecter.js");
 var req_terminer = require("./req_terminer");
 var req_erreur = require("./req_erreur.js");
+var req_analyser = require("./req_analyser.js");
 
 //-------------------------------------------------------------------------
 // FONCTION DE CALLBACK APPELLEE POUR CHAQUE REQUETE
@@ -61,14 +62,17 @@ var traite_requete = function (req, res) {
 			case '/req_attendre':
 				req_attendre(req, res, query);
 				break;
-			case '/req_jouer':
-				req_jouer(req, res, query);
+			case '/req_attente_jeu':
+				req_attente_jeu(req, res, query);
 				break;
 			case '/req_terminer':
 			    req_terminer(req, res, query);
 				break;
 			case '/req_deconnecter':
 			    req_deconnecter(req, res, query);
+				break;
+			case '/req_analyser':
+			    req_analyser(req, res, query);
 				break;
 			default:
 				req_static(req, res, pathname);

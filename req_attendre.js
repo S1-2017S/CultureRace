@@ -13,7 +13,7 @@ var trait = function (req, res, query) {
 
 	var marqueurs;
 	var page
-		var membre;
+	var membre;
 	var contenu_fichier;
 	var listeConnectes = [];
 	var salleAttente = [];
@@ -22,14 +22,16 @@ var trait = function (req, res, query) {
 	var n;
 	var contenu_SA;
 	var nouveau;
+	var nouveauJ1;
+	var nouveauJ2;
 	var nouvellePartieJoueur1;
 	var nouvellePartieJoueur2;
 	var maPartie = [];
 	var contenu_partie;
-	var tourJoueur;
+	var joueur;
 	var Joueur;
 	var Players;
-	var Player1;
+	var J2;
 
 	// ON LIT LES JOUEURS CONNECTES
 
@@ -46,13 +48,17 @@ var trait = function (req, res, query) {
 	i=0;
 	while(i<listeConnectes.length && Joueur === false) {
 		if(listeConnectes[i].etat === "ATTENTE") {
+			J2 = listeConnectes[i].pseudo;
 			Joueur = true;
 		}
 		i++;
 	}
+
+
 	if(Joueur === false) {
+
 	for(i=0; i<listeConnectes.length; i++) {
-		if(trouve === false && listeConnectes.pseudo === query.pseudo) {
+		if(listeConnectes[i].pseudo === query.pseudo) {
 			listeConnectes[i] = nouveau;
 		}
 	}
@@ -69,18 +75,14 @@ var trait = function (req, res, query) {
 		marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
 
-		Players = {};
-		Player1 = query.pseudo;
-		Players2 = "";
-		maPartie.push(Players);
-
-		tourJoueur = {};
-		tourJoueur.tour = 0;
-		maPartie.push(tourJoueur);
+		joueur = {};
+		joueur.tour = 0;
+		maPartie.push(joueur);
 
 		nouvellePartieJoueur1 = {};
 		nouvellePartieJoueur1.J1question = "";
 		nouvellePartieJoueur1.J1points = 0;
+		nouvellePartieJoueur1.adv = "";
 
 		maPartie.push(nouvellePartieJoueur1);
 
@@ -97,63 +99,49 @@ var trait = function (req, res, query) {
 
 
 
-		// SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE, ALORS LE JOUEUE EST REDIRIGE VERS LA PAGE JOUEUR PASSIF
+		// SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE, ALORS LE JOUEUR EST REDIRIGE VERS LA PAGE JOUEUR PASSIF
+
 	} else {
 
-		// ON VERIFIE SI QUELQU'UN EST DEJA CONNECTE 
+		contenu_partie = fs.readFileSync("partie"+J2+".json", 'UTF-8');
+		maPartie = JSON.parse(contenu_partie);
 
-		nouveau = {}
-		nouveau.pseudo =query.pseudo;
-		nouveau.etat = "JEU";
+		maPartie[1].adv = query.pseudo;
 
-		Joueur = false;
-		i=0;
-		while(i<listeConnectes.length && Joueur === false) {
-			if(listeConnectes[i].etat === "ATTENTE") {
-				Joueur = true;
-				listeConnectes[i].etat = "JEU"
+		contenu_partie = JSON.stringify(maPartie);
+		fs.writeFileSync("partie"+J2+".json", contenu_partie, 'UTF-8');
+
+		nouveauJ1 = {}
+		nouveauJ1.pseudo =query.pseudo;
+		nouveauJ1.etat = "JEU";
+
+		for(i=0; i<listeConnectes.length; i++) {
+			if(listeConnectes[i].pseudo === query.pseudo) {
+				listeConnectes[i] = nouveauJ1;
 			}
-			i++;
 		}
 
-	}
-	for(i=0; i<listeConnectes.length; i++) {
-		if(trouve === true && listeConnectes.pseudo === query.pseudo) {
-			listeConnectes[i] = nouveau;
-		}
+		nouveauJ2 = {}
+		nouveauJ2.pseudo =J2;
+		nouveauJ2.etat = "JEU";
+		console.log(J2);
 
+		for(i=0; i<listeConnectes.length; i++) {
+			if(listeConnectes[i].pseudo === J2) {
+				listeConnectes[i] = nouveauJ2;
+			}
+		}
 		contenu_fichier = JSON.stringify(listeConnectes);
 		fs.writeFileSync("connectes.json", contenu_fichier, 'UTF-8');
 
 		// ON RENVOIT UNE PAGE HTML 
 		// LE JOUEUR EST REDIRIGE VERS LA SALLE D'ATTENTE
 
-		page = fs.readFileSync('salle_attente.html', 'UTF-8');
-
-		marqueurs  = {};
-		marqueurs.pseudo = query.pseudo;
-		page = page.supplant(marqueurs);
-
-		//contenu_fichier = fs.readFileSync("partie"+query.pseudo+".json", 'UTF-8');
-		//maPartie = JSON.parse(contenu_fichier);
-
-		//contenu_fichier = JSON.stringify(maPartie);
-		//fs.writeFileSync("partie"+query+pseudo+".json", contenu_fichier, 'UTF-8');
-
 		page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 
 		marqueurs  = {};
 		marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
-
-		//nouvellePartie = {};
-		//nouvellePartie.J2question = "";
-		//nouvellePartie.J2points = 0;
-
-		//maPartie.push(nouvellePartie);
-
-		//contenu_partie = JSON.stringify(maPartie);
-		//fs.writeFileSync("partie"+query.pseudo+"json", contenu_partie, 'UTF-8');
 
 	}
 

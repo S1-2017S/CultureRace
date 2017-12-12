@@ -20,6 +20,7 @@ var req_afficher_compte = require("./req_afficher_compte");
 var req_modifier_compte = require("./req_modifier_compte");
 var req_confirmer_suppression = require("./req_confirmer_suppression");
 var req_supprimer_compte = require("./req_supprimer_compte");
+var req_lister_compte = require("./req_lister_compte");
 
 //-------------------------------------------------------------------------
 // FONCTION DE CALLBACK APPELLEE POUR CHAQUE REQUETE
@@ -45,6 +46,9 @@ var traite_requete = function (req, res) {
 		case '/':
 		case '/req_start':
 			req_start(req, res, query);
+			break;
+		case '/req_lister_compte':
+			req_lister_compte(req, res, query);
 			break;
 		case '/req_afficher_compte':
 			req_afficher_compte(req, res, query);

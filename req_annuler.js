@@ -1,39 +1,35 @@
+//annuler.js
 
-//=========================================================================
-// Retour a la page Accueil
-// Auteur : Achraf, Djibril, Ismael
-// Version : 21/11/2017
-//=========================================================================
-
+//================================================================
+// Traitement de "req_annuler"
+// Auteur: Achraf
+// Version : 07/12/2017
+//================================================================
 "use strict";
 
 var fs = require("fs");
-var path = require("remedial");
+require('remedial');
 
-var annuler = function (req, res, query) {
+var trait = function (req, res, query) {
 
-    var marqueurs;
+	var marqueurs;
 	var page;
 
-	// AFFICHAGE PAGE D'ACCUEIL
+	//ON RETOURNE VERS LA PAGE MENU_COMPTE
 
-	page = fs.readFileSync("accueil.html", "utf-8"):
-
+	page = fs.readFileSync('menu_compte.html','UTF-8');
 	marqueurs = {};
-	marqueurs.erreur = "";
-	marqueurs.compte = "";
+	marqueurs.pseudo = query.pseudo;
+	marqueurs.password = membre[i].password;
+	marqueurs.modifie = "";
 	page = page.supplant(marqueurs);
 
-	res.writeHead(200, {'Content-Type': 'text/plain'});
-
-	res.write('ERREUR SERVEUR');
-
+	res.writeHead(200, ({'Content-Type': 'text/html'});
+	res.write(page);
 	res.end();
+
 };
 
-//--------------------------------------------------------------------------
+//---------------------------------------------------------------
 
-module.exports = annuler;
-
-
-
+module.exports = trait;

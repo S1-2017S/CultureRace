@@ -21,47 +21,61 @@ var trait = function (req, res, query) {
 	var trouve;
 	var n;
 	var contenu_SA;
-	var nouveauSalleAttente;
+	var nouveau;
 	var nouvellePartieJoueur1;
 	var nouvellePartieJoueur2;
 	var maPartie = [];
 	var contenu_partie;
 	var tourJoueur;
+	var Joueur;
+	var Players;
+	var Player1;
 
-	// ON LIT LES JOUEURS CONNECTES ET LA SALLE D'ATTENTE
+	// ON LIT LES JOUEURS CONNECTES
 
 	contenu_fichier = fs.readFileSync("connectes.json", 'UTF-8');
 	listeConnectes = JSON.parse(contenu_fichier);
 
-	contenu_SA = fs.readFileSync("salleAttente.json", 'UTF-8');
-	salleAttente = JSON.parse(contenu_SA);
-
-	nouveauSalleAttente = {};
-	nouveauSalleAttente.pseudo = query.pseudo;
-	nouveauSalleAttente.etat = "ATTENTE";
+	nouveau = {};
+	nouveau.pseudo = query.pseudo;
+	nouveau.etat = "ATTENTE";
 
 	// ON VERIFIE SI QUELQU'UN EST DEJA CONNECTE 
 
-	if(salleAttente.length === 0) {
-		salleAttente.push(nouveauSalleAttente);
+	Joueur = false;
+	i=0;
+	while(i<listeConnectes.length && Joueur === false) {
+		if(listeConnectes[i].etat === "ATTENTE") {
+			Joueur = true;
+		}
+		i++;
+	}
+	if(Joueur === false) {
+	for(i=0; i<listeConnectes.length; i++) {
+		if(trouve === false && listeConnectes.pseudo === query.pseudo) {
+			listeConnectes[i] = nouveau;
+		}
+	}
 
+		contenu_fichier = JSON.stringify(listeConnectes);
+		fs.writeFileSync("connectes.json", contenu_fichier, 'UTF-8');
 
 		// ON RENVOIT UNE PAGE HTML 
 		// LE JOUEUR EST REDIRIGE VERS LA SALLE D'ATTENTE
 
 		page = fs.readFileSync('salle_attente.html', 'UTF-8');
 
-		contenu_SA = JSON.stringify(salleAttente);
-		fs.writeFileSync("salleAttente.json", contenu_SA, 'UTF-8');
-
 		marqueurs  = {};
 		marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
 
-		//fs.writeFileSync("partie"+query.pseudo+".json", "[]", 'UTF-8');
+		Players = {};
+		Player1 = query.pseudo;
+		Players2 = "";
+		maPartie.push(Players);
+
 		tourJoueur = {};
 		tourJoueur.tour = 0;
-
 		maPartie.push(tourJoueur);
 
 		nouvellePartieJoueur1 = {};
@@ -86,10 +100,45 @@ var trait = function (req, res, query) {
 		// SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE, ALORS LE JOUEUE EST REDIRIGE VERS LA PAGE JOUEUR PASSIF
 	} else {
 
-		salleAttente.splice(salleAttente[i], 1);
+		// ON VERIFIE SI QUELQU'UN EST DEJA CONNECTE 
 
-		contenu_SA = JSON.stringify(salleAttente);
-		fs.writeFileSync("salleAttente.json", contenu_SA, 'UTF-8');
+		nouveau = {}
+		nouveau.pseudo =query.pseudo;
+		nouveau.etat = "JEU";
+
+		Joueur = false;
+		i=0;
+		while(i<listeConnectes.length && Joueur === false) {
+			if(listeConnectes[i].etat === "ATTENTE") {
+				Joueur = true;
+				listeConnectes[i].etat = "JEU"
+			}
+			i++;
+		}
+
+	}
+	for(i=0; i<listeConnectes.length; i++) {
+		if(trouve === true && listeConnectes.pseudo === query.pseudo) {
+			listeConnectes[i] = nouveau;
+		}
+
+		contenu_fichier = JSON.stringify(listeConnectes);
+		fs.writeFileSync("connectes.json", contenu_fichier, 'UTF-8');
+
+		// ON RENVOIT UNE PAGE HTML 
+		// LE JOUEUR EST REDIRIGE VERS LA SALLE D'ATTENTE
+
+		page = fs.readFileSync('salle_attente.html', 'UTF-8');
+
+		marqueurs  = {};
+		marqueurs.pseudo = query.pseudo;
+		page = page.supplant(marqueurs);
+
+		//contenu_fichier = fs.readFileSync("partie"+query.pseudo+".json", 'UTF-8');
+		//maPartie = JSON.parse(contenu_fichier);
+
+		//contenu_fichier = JSON.stringify(maPartie);
+		//fs.writeFileSync("partie"+query+pseudo+".json", contenu_fichier, 'UTF-8');
 
 		page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 

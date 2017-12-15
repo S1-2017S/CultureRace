@@ -5,11 +5,30 @@
 	<title>Liste des comptes</title>
 </head>
 <body>
-<h1>Liste des comptes</h1>
 
-<p>{liste}</p>
-
+<table>
+<caption><b>Liste des membres</b></caption>
+<tr>
+<th>Nom du compte</th>
+<th>Mot de passe </th>
+</tr>
+<tr>
+{liste}
+</tr>
+</table>
+<br>
 <form action ="req_start" method="GET">
 <input type="submit" name="action" value="Retour">
 </form>
+<style>
+table{
+border-collapse: collapse;
+text-align: center;
+}
+td{
+border: 1px solid black;
+}
+caption{
+font-size: 30px;}
+</style>
 </body>

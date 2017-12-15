@@ -26,7 +26,7 @@ var trait = function (req, res, query) {
 
 	affichage = "";
 	for(i=0;i<membre.length;i++){
-	affichage = affichage + "Nom du compte : " + membre[i].pseudo + "<br>" + " Mot de passe : " + membre[i].password + "<br>" + "--------------------------------<br>";
+	affichage = affichage + "<tr><td>" + membre[i].pseudo + "</td><td>" + membre[i].password + "</td></tr>";
 	}
 	
 	page = fs.readFileSync('liste_compte.html','UTF-8');

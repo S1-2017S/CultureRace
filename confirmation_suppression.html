@@ -7,15 +7,17 @@
 <body>
 <h1>Confirmation suppression compte </h1>
 <p>Êtes vous sur de vouloir supprimer le compte suivant:
-{pseudo}
+{pseudo}?
 </p>
 
 <form action="req_supprimer_compte" method="GET">
 <input type="hidden" name="pseudo" value="{pseudo}">
 <input type="submit" name="action" value="Oui">
 </form>
+<br>
 <form action="req_afficher_compte" method="GET">
 <input type="hidden" name="pseudo" value="{pseudo}">
-<input type="submit" name="action" value="Retour">
+<input type="submit" name="action" value="Surtout pas!">
 </form>
+<style>
 </body>

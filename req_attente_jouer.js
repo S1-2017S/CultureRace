@@ -50,7 +50,7 @@ var trait = function (req, res, query) {
 	if(query.pseudo === listeConnectes[i].NP) {
 		if(tour % 2 === 0) {
 
-			n = Math.floor(Math.random() * (monQuestionnaire.length)-1);
+			n = Math.floor(Math.random() * monQuestionnaire.length);
 
 			questionnaire = {};
 			questionnaire.question = monQuestionnaire[n].question
@@ -66,6 +66,9 @@ var trait = function (req, res, query) {
 
 			marqueurs = {};
 			marqueurs.pseudo = query.pseudo;
+			marqueurs.adv = listeConnectes[i].adv;
+			marqueurs.score1 = maPartie[1].J1points;
+			marqueurs.score2 = maPartie[2].J2points;
 
 			page = fs.readFileSync('joueur_actif.html', 'UTF-8');
 
@@ -76,6 +79,9 @@ var trait = function (req, res, query) {
 
 			marqueurs = {};
 			marqueurs.pseudo = query.pseudo;
+			marqueurs.adv = listeConnectes[i].adv;
+			marqueurs.score1 = maPartie[1].J1points;
+			marqueurs.score2 = maPartie[2].J2points;
 			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 			page = page.supplant(marqueurs);
 
@@ -86,6 +92,9 @@ var trait = function (req, res, query) {
 
 			marqueurs = {};
 			marqueurs.pseudo = query.pseudo;
+			marqueurs.adv = listeConnectes[i].adv;
+			marqueurs.score1 = maPartie[1].J1points;
+			marqueurs.score2 = maPartie[2].J2points;
 			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 			page = page.supplant(marqueurs);
 
@@ -107,6 +116,9 @@ var trait = function (req, res, query) {
 
 			marqueurs = {};
 			marqueurs.pseudo = query.pseudo;
+			marqueurs.adv = listeConnectes[i].adv;
+			marqueurs.score1 = maPartie[1].J1points;
+			marqueurs.score2 = maPartie[2].J2points;
 
 			page = fs.readFileSync('joueur_actif.html', 'UTF-8');
 

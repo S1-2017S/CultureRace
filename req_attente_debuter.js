@@ -53,7 +53,7 @@ var trait = function (req, res, query) {
 	monQuestionnaire = JSON.parse(contenu_fichier);
 
 
-	n = Math.floor(Math.random() *(monQuestionnaire.length)-1);
+	n = Math.floor(Math.random() * monQuestionnaire.length);
 
 	questionnaire  = {};
 	questionnaire.question = monQuestionnaire[n].question

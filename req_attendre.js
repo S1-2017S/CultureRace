@@ -82,14 +82,12 @@ var trait = function (req, res, query) {
 		nouvellePartieJoueur1 = {};
 		nouvellePartieJoueur1.J1question = "";
 		nouvellePartieJoueur1.J1points = 0;
-		nouvellePartieJoueur1.adv = "";
 
 		maPartie.push(nouvellePartieJoueur1);
 
 		nouvellePartieJoueur2 = {};
 		nouvellePartieJoueur2.J2question = "";
 		nouvellePartieJoueur2.J2points = 0;
-		nouvellePartieJoueur2.adv = query.pseudo;
 
 		maPartie.push(nouvellePartieJoueur2);
 
@@ -106,14 +104,14 @@ var trait = function (req, res, query) {
 		contenu_partie = fs.readFileSync("partie"+J2+".json", 'UTF-8');
 		maPartie = JSON.parse(contenu_partie);
 
-		maPartie[1].adv = query.pseudo;
-
 		contenu_partie = JSON.stringify(maPartie);
 		fs.writeFileSync("partie"+J2+".json", contenu_partie, 'UTF-8');
 
 		nouveauJ1 = {}
-		nouveauJ1.pseudo =query.pseudo;
+		nouveauJ1.pseudo = query.pseudo;
 		nouveauJ1.etat = "JEU";
+		nouveauJ1.adv = J2;
+		nouveauJ1.NP = J2;
 
 		for(i=0; i<listeConnectes.length; i++) {
 			if(listeConnectes[i].pseudo === query.pseudo) {
@@ -122,9 +120,10 @@ var trait = function (req, res, query) {
 		}
 
 		nouveauJ2 = {}
-		nouveauJ2.pseudo =J2;
+		nouveauJ2.pseudo = J2;
 		nouveauJ2.etat = "JEU";
-		console.log(J2);
+		nouveauJ2.adv = query.pseudo;
+		nouveauJ2.NP = J2;
 
 		for(i=0; i<listeConnectes.length; i++) {
 			if(listeConnectes[i].pseudo === J2) {

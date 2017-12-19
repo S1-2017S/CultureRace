@@ -41,9 +41,9 @@ var trait = function (req, res, query) {
 			contenu_partie = fs.readFileSync("partie"+listeConnectes[i].NP+".json", 'UTF-8');
 			maPartie = JSON.parse(contenu_partie);
 			joueur = true;
-			break;
-		}
+		} else {
 		i++;
+	}
 	}
 
 	tour = Number(maPartie[0].tour);
@@ -64,9 +64,19 @@ var trait = function (req, res, query) {
 			contenu_partie = JSON.stringify(maPartie);
 			fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_partie, 'UTF-8');
 
+			if(maPartie[2].J2points > 4) {
+
+			page = fs.readFileSync('perd.html', 'UTF-8');
 			marqueurs = {};
 			marqueurs.pseudo = query.pseudo;
-			marqueurs.adv = listeConnectes[i].adv;
+			page = page.supplant(marqueurs);
+
+			} else {
+
+			marqueurs = {};
+			marqueurs.pseudo = query.pseudo;
+			marqueurs.j1 = query.pseudo;
+			marqueurs.j2 = listeConnectes[i].adv;
 			marqueurs.score1 = maPartie[1].J1points;
 			marqueurs.score2 = maPartie[2].J2points;
 
@@ -75,11 +85,14 @@ var trait = function (req, res, query) {
 			page = page.supplant(marqueurs);
 			page = page.supplant(questionnaire);
 
+			}
+
 		}else{
 
 			marqueurs = {};
 			marqueurs.pseudo = query.pseudo;
-			marqueurs.adv = listeConnectes[i].adv;
+			marqueurs.j1 = query.pseudo;
+			marqueurs.j2 = listeConnectes[i].adv;
 			marqueurs.score1 = maPartie[1].J1points;
 			marqueurs.score2 = maPartie[2].J2points;
 			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
@@ -92,7 +105,8 @@ var trait = function (req, res, query) {
 
 			marqueurs = {};
 			marqueurs.pseudo = query.pseudo;
-			marqueurs.adv = listeConnectes[i].adv;
+			marqueurs.j2 = query.pseudo;
+			marqueurs.j1 = listeConnectes[i].adv;
 			marqueurs.score1 = maPartie[1].J1points;
 			marqueurs.score2 = maPartie[2].J2points;
 			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
@@ -100,7 +114,7 @@ var trait = function (req, res, query) {
 
 		}else{
 
-			n = Math.floor(Math.random() * (monQuestionnaire.length)-1);
+			n = Math.floor(Math.random() * (monQuestionnaire.length));
 
 			questionnaire = {};
 			questionnaire.question = monQuestionnaire[n].question
@@ -114,9 +128,19 @@ var trait = function (req, res, query) {
 			contenu_partie = JSON.stringify(maPartie);
 			fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_partie, 'UTF-8');
 
+			if(maPartie[1].J1points > 4) {
+
+			page = fs.readFileSync('perd.html', 'UTF-8');
 			marqueurs = {};
 			marqueurs.pseudo = query.pseudo;
-			marqueurs.adv = listeConnectes[i].adv;
+			page = page.supplant(marqueurs);
+
+			} else {
+
+			marqueurs = {};
+			marqueurs.pseudo = query.pseudo;
+			marqueurs.j2 = query.pseudo;
+			marqueurs.j1 = listeConnectes[i].adv;
 			marqueurs.score1 = maPartie[1].J1points;
 			marqueurs.score2 = maPartie[2].J2points;
 
@@ -124,6 +148,8 @@ var trait = function (req, res, query) {
 
 			page = page.supplant(marqueurs);
 			page = page.supplant(questionnaire);
+
+		}
 
 		}
 

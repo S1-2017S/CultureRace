@@ -16,18 +16,30 @@ var trait = function (req, res, query) {
    var contenu_fichier;
    var listeConnectes = [];
    var player;  
+   var i;
+   var trouve;
 
-   contenu_fichier = fs.readFileSync("connectes.json", "UTF-8");
+   contenu_fichier = fs.readFileSync('connectes.json', 'UTF-8');
    listeConnectes = JSON.parse(contenu_fichier);
 
 
    //ON REVIENT A ACCUEIL MEMBRE
 
    page = fs.readFileSync('accueil_membre.html', 'UTF-8');
-   
-   player = {};
-   player.pseudo = query.pseudo;
-   player.etat = "LIBRE";
+
+   trouve = false;
+   i=0
+	while(i<listeConnectes.length && trouve === false) {
+		if(listeConnectes[i].pseudo === query.pseudo) {
+			fs.unlinkSync("partie"+listeConnectes[i].NP+".json");
+			trouve=true;
+		}
+	i++
+	}
+	
+	player = {};
+	player.pseudo = query.pseudo;
+	player.etat = "LIBRE";
 
    for(i=0; i<listeConnectes.length; i++) {
       if(listeConnectes[i].pseudo === query.pseudo) {
@@ -36,7 +48,7 @@ var trait = function (req, res, query) {
    }
 
    contenu_fichier = JSON.stringify(listeConnectes);
-   fs.writeFileSync("connectes.json", contenu_fichier, "UTF-8");
+   fs.writeFileSync('connectes.json', contenu_fichier, 'UTF-8');
 
    marqueurs = {};
    marqueurs.pseudo = query.pseudo;

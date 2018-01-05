@@ -8,8 +8,10 @@
 
 <h1>Vous avez gagné!</h1>
 
-
-<a href=""><button type="button"><p>Retour à l'accueil</p></button></a>
+<form action = "req_terminer" method="GET">
+<input type = "hidden" name="pseudo" value={pseudo}>
+<input type = "submit" name="action" value="retour à l'acceuil">
+</form>
 
 
 </body>

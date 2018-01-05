@@ -34,8 +34,9 @@ var trait = function (req, res, query) {
 	while(i<listeConnectes.length && Joueur === false) {
 		if(listeConnectes[i].etat === "ATTENTE") {
 			Joueur = true;
-		}
+		} else {
 		i++;
+	}
 	}
 
 	if(Joueur === true) {
@@ -76,7 +77,15 @@ var trait = function (req, res, query) {
 	fs.writeFileSync("partie"+query.pseudo+".json", contenu_partie, 'UTF-8');
 
 	marqueurs = {};
-	marqueurs.pseudo = query.pseudo
+	marqueurs.pseudo = query.pseudo;
+	marqueurs.j1 = query.pseudo;
+	for(i=0; i<listeConnectes.length; i++) {
+		if(query.pseudo === listeConnectes[i].pseudo) {
+			marqueurs.j2 = listeConnectes[i].adv
+		}
+	}
+	marqueurs.score1 = maPartie[1].J1points;
+	marqueurs.score2 = maPartie[2].J2points;
 	page = page.supplant(marqueurs);
 
 

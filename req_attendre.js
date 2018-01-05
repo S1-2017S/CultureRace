@@ -140,6 +140,10 @@ var trait = function (req, res, query) {
 
 		marqueurs  = {};
 		marqueurs.pseudo = query.pseudo;
+		marqueurs.j2 = query.pseudo;
+		marqueurs.j1 = J2;
+		marqueurs.score1 = maPartie[1].J1points;
+		marqueurs.score2 = maPartie[2].J2points;
 		page = page.supplant(marqueurs);
 
 	}

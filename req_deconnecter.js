@@ -28,8 +28,6 @@ var trait = function (req, res, query) {
 
 	for(i=0; i<listeConnectes.length; i++) {
 		if(query.pseudo === listeConnectes[i].pseudo) {
-			console.log(query.pseudo);
-			console.log(listeConnectes[i]);
 			listeConnectes.splice(i, 1);
 		}
 	}

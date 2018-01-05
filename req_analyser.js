@@ -68,7 +68,7 @@ var trait = function (req, res, query) {
 			contenu_fichier = JSON.stringify(maPartie);
 			fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
 
-			if(maPartie[1].J1points > 4) {
+			if(maPartie[1].J1points > 1) {
 				page = fs.readFileSync('gagne.html', 'UTF-8');
 
 				marqueurs = {};
@@ -125,7 +125,7 @@ var trait = function (req, res, query) {
 			contenu_fichier = JSON.stringify(maPartie);
 			fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
 
-			if(maPartie[2].J2points > 4) {
+			if(maPartie[2].J2points > 1) {
 				page = fs.readFileSync('gagne.html', 'UTF-8');
 
 				marqueurs = {};

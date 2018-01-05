@@ -32,6 +32,7 @@ var trait = function (req, res, query) {
 	var Joueur;
 	var Players;
 	var J2;
+	var test_liste = require ("./testliste.js");
 
 	// ON LIT LES JOUEURS CONNECTES
 
@@ -80,13 +81,13 @@ var trait = function (req, res, query) {
 		maPartie.push(joueur);
 
 		nouvellePartieJoueur1 = {};
-		nouvellePartieJoueur1.J1question = "";
+		nouvellePartieJoueur1.J1question = test_liste;
 		nouvellePartieJoueur1.J1points = 0;
 
 		maPartie.push(nouvellePartieJoueur1);
 
 		nouvellePartieJoueur2 = {};
-		nouvellePartieJoueur2.J2question = "";
+		nouvellePartieJoueur2.J2question = test_liste;
 		nouvellePartieJoueur2.J2points = 0;
 
 		maPartie.push(nouvellePartieJoueur2);

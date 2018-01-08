@@ -53,25 +53,21 @@ var trait = function (req, res, query) {
 	contenu_fichier = fs.readFileSync("questionnaire.json", 'UTF-8');
 	monQuestionnaire = JSON.parse(contenu_fichier);
 
+	contenu_partie = fs.readFileSync("partie"+query.pseudo+".json", 'UTF-8');
+	maPartie = JSON.parse(contenu_partie);
 
-	n = Math.floor(Math.random() * monQuestionnaire.length);
 
 	questionnaire  = {};
-	questionnaire.question = monQuestionnaire[n].question
-	questionnaire.reponses1 = monQuestionnaire[n].reponses[0];
-	questionnaire.reponses2 = monQuestionnaire[n].reponses[1];
-	questionnaire.reponses3 = monQuestionnaire[n].reponses[2];
-	questionnaire.reponses4 = monQuestionnaire[n].reponses[3];
+	questionnaire.question = monQuestionnaire[maPartie[1].J1.question[0]].question;
+	questionnaire.reponses1 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[0];
+	questionnaire.reponses2 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[1];
+	questionnaire.reponses3 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[2];
+	questionnaire.reponses4 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[3];
 
 
 	page = fs.readFileSync('joueur_actif.html', 'UTF-8');
 
 	page = page.supplant(questionnaire);
-
-	contenu_partie = fs.readFileSync('partie'+query.pseudo+'.json', 'UTF-8');
-	maPartie = JSON.parse(contenu_partie);
-
-	maPartie[1].J1question = n;
 
 	contenu_partie = JSON.stringify(maPartie);
 	fs.writeFileSync("partie"+query.pseudo+".json", contenu_partie, 'UTF-8');
@@ -79,13 +75,14 @@ var trait = function (req, res, query) {
 	marqueurs = {};
 	marqueurs.pseudo = query.pseudo;
 	marqueurs.j1 = query.pseudo;
+
 	for(i=0; i<listeConnectes.length; i++) {
 		if(query.pseudo === listeConnectes[i].pseudo) {
 			marqueurs.j2 = listeConnectes[i].adv
 		}
 	}
-	marqueurs.score1 = maPartie[1].J1points;
-	marqueurs.score2 = maPartie[2].J2points;
+	marqueurs.score1 = maPartie[1].J1.points;
+	marqueurs.score2 = maPartie[1].J2.points;
 	page = page.supplant(marqueurs);
 
 

@@ -12,7 +12,7 @@ require('remedial');
 var trait = function (req, res, query) {
 
 	var marqueurs;
-	var page
+	var page;
 	var membre;
 	var contenu_fichier;
 	var listeConnectes = [];
@@ -24,15 +24,20 @@ var trait = function (req, res, query) {
 	var nouveau;
 	var nouveauJ1;
 	var nouveauJ2;
-	var nouvellePartieJoueur1;
-	var nouvellePartieJoueur2;
 	var maPartie = [];
 	var contenu_partie;
 	var joueur;
 	var Joueur;
 	var Players;
 	var J2;
-	var test_liste = require ("./testliste.js");
+	var liste1 = [];
+	var liste2 = [];
+	var J1 = {};
+	var J2 = {};
+	var a;
+	var contenu;
+	var questionnaire;
+	var objet;
 
 	// ON LIT LES JOUEURS CONNECTES
 
@@ -72,26 +77,32 @@ var trait = function (req, res, query) {
 
 		page = fs.readFileSync('salle_attente.html', 'UTF-8');
 
+		// ON CREE LE JSON DE LA PARTIE;
+
+		contenu = fs.readFileSync("questionnaire.json", "utf-8");
+		questionnaire = JSON.parse(contenu);
+
+		a = 0;
+		for(i=0; i<questionnaire.length; i++) {
+			liste1[i] = a;
+			a++;
+		}
+		for(i=0; i<questionnaire.length; i++) {
+			a = Math.floor(Math.random() * liste1.length);
+			liste2[i] = liste1[a];
+			liste1.splice(a, 1);
+		}
+
 		marqueurs  = {};
 		marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
+		
+		objet = {};
+		objet.tour = 0;
+		maPartie.push(objet);
 
-		joueur = {};
-		joueur.tour = 0;
+		joueur = {J1:{points:0,question:liste2},J2:{points:0,question:liste2}};
 		maPartie.push(joueur);
-
-		nouvellePartieJoueur1 = {};
-		nouvellePartieJoueur1.J1question = test_liste;
-		nouvellePartieJoueur1.J1points = 0;
-
-		maPartie.push(nouvellePartieJoueur1);
-
-		nouvellePartieJoueur2 = {};
-		nouvellePartieJoueur2.J2question = test_liste;
-		nouvellePartieJoueur2.J2points = 0;
-
-		maPartie.push(nouvellePartieJoueur2);
-
 
 		contenu_partie = JSON.stringify(maPartie);
 		fs.writeFileSync("partie"+query.pseudo+".json", contenu_partie, 'UTF-8');
@@ -143,8 +154,8 @@ var trait = function (req, res, query) {
 		marqueurs.pseudo = query.pseudo;
 		marqueurs.j2 = query.pseudo;
 		marqueurs.j1 = J2;
-		marqueurs.score1 = maPartie[1].J1points;
-		marqueurs.score2 = maPartie[2].J2points;
+		marqueurs.score1 = maPartie[1].J1.points;
+		marqueurs.score2 = maPartie[1].J2.points;
 		page = page.supplant(marqueurs);
 
 	}

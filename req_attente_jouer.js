@@ -43,58 +43,54 @@ var trait = function (req, res, query) {
 			joueur = true;
 		} else {
 		i++;
-	}
+		}
 	}
 
 	tour = Number(maPartie[0].tour);
 	if(query.pseudo === listeConnectes[i].NP) {
 		if(tour % 2 === 0) {
 
-			n = Math.floor(Math.random() * monQuestionnaire.length);
+			//contenu_partie = JSON.stringify(maPartie);
+			//fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_partie, 'UTF-8');
 
-			questionnaire = {};
-			questionnaire.question = monQuestionnaire[n].question
-			questionnaire.reponses1 = monQuestionnaire[n].reponses[0];
-			questionnaire.reponses2 = monQuestionnaire[n].reponses[1];
-			questionnaire.reponses3 = monQuestionnaire[n].reponses[2];
-			questionnaire.reponses4 = monQuestionnaire[n].reponses[3];
+			if(maPartie[1].J2.points > 4) {
 
-			maPartie[1].J1question = n;
-
-			contenu_partie = JSON.stringify(maPartie);
-			fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_partie, 'UTF-8');
-
-			if(maPartie[2].J2points > 1) {
-
-			page = fs.readFileSync('perd.html', 'UTF-8');
-			marqueurs = {};
-			marqueurs.pseudo = query.pseudo;
-			page = page.supplant(marqueurs);
+				page = fs.readFileSync('perd.html', 'UTF-8');
+				marqueurs = {};
+				marqueurs.pseudo = query.pseudo;
+				page = page.supplant(marqueurs);
 
 			} else {
 
-			marqueurs = {};
-			marqueurs.pseudo = query.pseudo;
-			marqueurs.j1 = query.pseudo;
-			marqueurs.j2 = listeConnectes[i].adv;
-			marqueurs.score1 = maPartie[1].J1points;
-			marqueurs.score2 = maPartie[2].J2points;
+				questionnaire = {};
+				questionnaire.question = monQuestionnaire[maPartie[1].J1.question[0]].question
+				questionnaire.reponses1 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[0];
+				questionnaire.reponses2 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[1];
+				questionnaire.reponses3 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[2];
+				questionnaire.reponses4 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[3];
 
-			page = fs.readFileSync('joueur_actif.html', 'UTF-8');
+				marqueurs = {};
+				marqueurs.pseudo = query.pseudo;
+				marqueurs.j1 = query.pseudo;
+				marqueurs.j2 = listeConnectes[i].adv;
+				marqueurs.score1 = maPartie[1].J1.points;
+				marqueurs.score2 = maPartie[1].J2.points;
 
-			page = page.supplant(marqueurs);
-			page = page.supplant(questionnaire);
+				page = fs.readFileSync('joueur_actif.html', 'UTF-8');
+
+				page = page.supplant(marqueurs);
+				page = page.supplant(questionnaire);
 
 			}
 
-		}else{
+		} else {
 
 			marqueurs = {};
 			marqueurs.pseudo = query.pseudo;
 			marqueurs.j1 = query.pseudo;
 			marqueurs.j2 = listeConnectes[i].adv;
-			marqueurs.score1 = maPartie[1].J1points;
-			marqueurs.score2 = maPartie[2].J2points;
+			marqueurs.score1 = maPartie[1].J1.points;
+			marqueurs.score2 = maPartie[1].J2.points;
 			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 			page = page.supplant(marqueurs);
 
@@ -107,49 +103,45 @@ var trait = function (req, res, query) {
 			marqueurs.pseudo = query.pseudo;
 			marqueurs.j2 = query.pseudo;
 			marqueurs.j1 = listeConnectes[i].adv;
-			marqueurs.score1 = maPartie[1].J1points;
-			marqueurs.score2 = maPartie[2].J2points;
+			marqueurs.score1 = maPartie[1].J1.points;
+			marqueurs.score2 = maPartie[1].J2.points;
 			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 			page = page.supplant(marqueurs);
 
-		}else{
+		} else {
 
-			n = Math.floor(Math.random() * (monQuestionnaire.length));
+			//contenu_partie = JSON.stringify(maPartie);
+			//fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_partie, 'UTF-8');
 
-			questionnaire = {};
-			questionnaire.question = monQuestionnaire[n].question
-			questionnaire.reponses1 = monQuestionnaire[n].reponses[0];
-			questionnaire.reponses2 = monQuestionnaire[n].reponses[1];
-			questionnaire.reponses3 = monQuestionnaire[n].reponses[2];
-			questionnaire.reponses4 = monQuestionnaire[n].reponses[3];
+			if(maPartie[1].J1.points > 4) {
 
-			maPartie[2].J2question = n;
-
-			contenu_partie = JSON.stringify(maPartie);
-			fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_partie, 'UTF-8');
-
-			if(maPartie[1].J1points > 1) {
-
-			page = fs.readFileSync('perd.html', 'UTF-8');
-			marqueurs = {};
-			marqueurs.pseudo = query.pseudo;
-			page = page.supplant(marqueurs);
+				page = fs.readFileSync('perd.html', 'UTF-8');
+				marqueurs = {};
+				marqueurs.pseudo = query.pseudo;
+				page = page.supplant(marqueurs);
 
 			} else {
 
-			marqueurs = {};
-			marqueurs.pseudo = query.pseudo;
-			marqueurs.j2 = query.pseudo;
-			marqueurs.j1 = listeConnectes[i].adv;
-			marqueurs.score1 = maPartie[1].J1points;
-			marqueurs.score2 = maPartie[2].J2points;
+				questionnaire = {};
+				questionnaire.question = monQuestionnaire[maPartie[1].J2.question[0]].question
+				questionnaire.reponses1 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[0];
+				questionnaire.reponses2 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[1];
+				questionnaire.reponses3 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[2];
+				questionnaire.reponses4 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[3];
 
-			page = fs.readFileSync('joueur_actif.html', 'UTF-8');
+				marqueurs = {};
+				marqueurs.pseudo = query.pseudo;
+				marqueurs.j2 = query.pseudo;
+				marqueurs.j1 = listeConnectes[i].adv;
+				marqueurs.score1 = maPartie[1].J1.points;
+				marqueurs.score2 = maPartie[1].J2.points;
 
-			page = page.supplant(marqueurs);
-			page = page.supplant(questionnaire);
+				page = fs.readFileSync('joueur_actif.html', 'UTF-8');
 
-		}
+				page = page.supplant(marqueurs);
+				page = page.supplant(questionnaire);
+
+			}
 
 		}
 

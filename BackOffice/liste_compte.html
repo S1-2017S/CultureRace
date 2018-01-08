@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset ="UTF-8">
+	<title>Liste des comptes</title>
+</head>
+<body>
+
+<table>
+<caption><b>Liste des membres</b></caption>
+<tr>
+<th>Nom du compte</th>
+<th>Mot de passe </th>
+</tr>
+<tr>
+{liste}
+</tr>
+</table>
+<br>
+<form action ="req_afficher_menu_compte" method="GET">
+<input type="submit" name="action" value="Retour">
+</form>
+<style>
+table{
+border-collapse: collapse;
+text-align: center;
+}
+td{
+border: 1px solid black;
+}
+caption{
+font-size: 30px;}
+</style>
+</body>

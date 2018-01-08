@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset ="UTF-8">
+<title>Modifier compte</title>
+</head>
+<body>
+<h1>Modifier le compte </h1>
+<h3>Pseudo : {pseudo} </h3>
+<h3>Mot de passe actuel : {password} </h3>
+</br>
+{modifie}
+<form action ="req_modifier_compte" method="GET">
+
+<p>Nouveau mot de passe :<input type="text" name="password"></p>
+<input type="submit" name="action" value="Modifier">
+<input type="hidden" name="pseudo" value="{pseudo}">
+</form>
+</br>
+<form action="req_choix_pseudo_modifier" method="GET">
+<input type="submit" name="action" value="Choisir un autre compte">
+</form>
+<form action="req_afficher_menu_compte" method="GET">
+<input type="submit" name="action" value="Retour à la gestion des comptes">
+</form>

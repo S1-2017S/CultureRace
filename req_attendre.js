@@ -13,14 +13,9 @@ var trait = function (req, res, query) {
 
 	var marqueurs;
 	var page;
-	var membre;
 	var contenu_fichier;
 	var listeConnectes = [];
-	var salleAttente = [];
 	var i;
-	var trouve;
-	var n;
-	var contenu_SA;
 	var nouveau;
 	var nouveauJ1;
 	var nouveauJ2;
@@ -28,7 +23,6 @@ var trait = function (req, res, query) {
 	var contenu_partie;
 	var joueur;
 	var Joueur;
-	var Players;
 	var J2;
 	var liste1 = [];
 	var liste2 = [];
@@ -63,11 +57,11 @@ var trait = function (req, res, query) {
 
 	if(Joueur === false) {
 
-	for(i=0; i<listeConnectes.length; i++) {
-		if(listeConnectes[i].pseudo === query.pseudo) {
-			listeConnectes[i] = nouveau;
+		for(i=0; i<listeConnectes.length; i++) {
+			if(listeConnectes[i].pseudo === query.pseudo) {
+				listeConnectes[i] = nouveau;
+			}
 		}
-	}
 
 		contenu_fichier = JSON.stringify(listeConnectes);
 		fs.writeFileSync("connectes.json", contenu_fichier, 'UTF-8');
@@ -96,7 +90,7 @@ var trait = function (req, res, query) {
 		marqueurs  = {};
 		marqueurs.pseudo = query.pseudo;
 		page = page.supplant(marqueurs);
-		
+
 		objet = {};
 		objet.tour = 0;
 		maPartie.push(objet);
@@ -109,7 +103,7 @@ var trait = function (req, res, query) {
 
 
 
-		// SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE, ALORS LE JOUEUR EST REDIRIGE VERS LA PAGE JOUEUR PASSIF
+	// SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE, ALORS LE JOUEUR EST REDIRIGE VERS LA PAGE JOUEUR PASSIF
 
 	} else {
 

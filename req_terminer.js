@@ -18,6 +18,7 @@ var trait = function (req, res, query) {
    var player;  
    var i;
    var trouve;
+   var Joueur;
 
    contenu_fichier = fs.readFileSync('connectes.json', 'UTF-8');
    listeConnectes = JSON.parse(contenu_fichier);
@@ -25,18 +26,33 @@ var trait = function (req, res, query) {
 
    //ON REVIENT A ACCUEIL MEMBRE
 
-   page = fs.readFileSync('accueil_membre.html', 'UTF-8');
 
    trouve = false;
    i=0
 	while(i<listeConnectes.length && trouve === false) {
 		if(listeConnectes[i].pseudo === query.pseudo) {
-			fs.unlinkSync("partie"+listeConnectes[i].NP+".json");
+			Joueur = listeConnectes[i].adv;
 			trouve=true;
-		}
+	} else {
 	i++
 	}
+	}
 	
+	i=0;
+	trouve = false
+	while(listeConnectes.length && trouve === false) {
+		if(listeConnectes[i].pseudo === Joueur) {
+			if(listeConnectes[i].etat === "JEU") {
+				fs.unlinkSync("partie"+listeConnectes[i].NP+".json");
+				trouve = true;
+			} else {
+				trouve = true;
+			}
+		} else {
+		i++;
+		}
+	}
+			
 	player = {};
 	player.pseudo = query.pseudo;
 	player.etat = "LIBRE";
@@ -52,6 +68,8 @@ var trait = function (req, res, query) {
 
    marqueurs = {};
    marqueurs.pseudo = query.pseudo;
+
+   page = fs.readFileSync('accueil_membre.html', 'UTF-8');
 
    res.writeHead(200, {'Content-Type': 'text/html'});
    res.write(page);

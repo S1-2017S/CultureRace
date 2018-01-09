@@ -50,8 +50,6 @@ var trait = function (req, res, query) {
 	if(query.pseudo === listeConnectes[i].NP) {
 		if(tour % 2 === 0) {
 
-			//contenu_partie = JSON.stringify(maPartie);
-			//fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_partie, 'UTF-8');
 
 			if(maPartie[1].J2.points > 4) {
 
@@ -109,9 +107,6 @@ var trait = function (req, res, query) {
 			page = page.supplant(marqueurs);
 
 		} else {
-
-			//contenu_partie = JSON.stringify(maPartie);
-			//fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_partie, 'UTF-8');
 
 			if(maPartie[1].J1.points > 4) {
 

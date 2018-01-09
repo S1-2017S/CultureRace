@@ -13,21 +13,19 @@ var trait = function (req, res, query) {
 
 	var marqueurs;
 	var page;
-	var membre;
 	var contenu_questionnaire;
 	var contenu_fichier;
 	var contenu_connectes;
 	var monQuestionnaire = [];
 	var listeConnectes = [];
 	var maPartie = [];
-	var nouvellePartieJoueur1;
-	var nouvellePartieJoueur2;
 	var i;
 	var n;
 	var rep;
 	var bonRep;
 	var tour;
 	var joueur;
+	var tourJoueur;
 
 	// ON VERIFIE SI LE JOUEUR A ENTRER LA BONNE REPONSE
 
@@ -52,26 +50,28 @@ var trait = function (req, res, query) {
 	tour = Number(maPartie[0].tour);
 
 	if(tour % 2  === 0) {
+		tourJoueur = maPartie[1].J1
+	} else {
+		tourJoueur = maPartie[1].J2
+	}
 
-		n = maPartie[1].J1.question[0];
-		rep = Number(query.reponse);
-		bonRep = Number(monQuestionnaire[n].br);
+	n = tourJoueur.question[0];
+	rep = Number(query.reponse);
+	bonRep = Number(monQuestionnaire[n].br);
 
-		if(rep === bonRep) {
+	if(rep === bonRep) {
 
-			maPartie[1].J1.points =  Number(maPartie[1].J1.points) + 1;
-			maPartie[0].tour = Number(maPartie[0].tour) +1;
-			maPartie[1].J1.question.splice(0, 1);
+		tourJoueur.points =  Number(tourJoueur.points) + 1;
 
-			contenu_fichier = JSON.stringify(maPartie);
-			fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
+		contenu_fichier = JSON.stringify(maPartie);
+		fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
 
-			if(maPartie[1].J1.points > 4) {
+		if(tourJoueur.points > 4) {
 
-				page = fs.readFileSync('gagne.html', 'UTF-8');
-				marqueurs = {};
-				marqueurs.pseudo = query.pseudo
-				page = page.supplant(marqueurs);
+			page = fs.readFileSync('gagne.html', 'UTF-8');
+			marqueurs = {};
+			marqueurs.pseudo = query.pseudo
+			page = page.supplant(marqueurs);
 
 			} else {
 
@@ -88,11 +88,6 @@ var trait = function (req, res, query) {
 
 		} else {
 
-			maPartie[0].tour = Number(maPartie[0].tour) +1;
-			maPartie[1].J1.question.splice(0, 1);
-
-			contenu_fichier = JSON.stringify(maPartie);
-			fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
 
 			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 			marqueurs = {};
@@ -104,62 +99,13 @@ var trait = function (req, res, query) {
 			page = page.supplant(marqueurs);
 
 		}
+	
+		maPartie[0].tour = Number(maPartie[0].tour) +1;
+		tourJoueur.question.splice(0, 1);
 
-	} else {
+		contenu_fichier = JSON.stringify(maPartie);
+		fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
 
-		n = maPartie[1].J2.question[0];
-		rep = Number(query.reponse);
-		bonRep = Number(monQuestionnaire[n].br);
-
-		if(rep === bonRep) {
-
-			maPartie[1].J2.points = Number(maPartie[1].J2.points) + 1;
-			maPartie[0].tour = Number(maPartie[0].tour) +1;
-			maPartie[1].J2.question.splice(0, 1);
-
-			contenu_fichier = JSON.stringify(maPartie);
-			fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
-
-			if(maPartie[1].J2.points > 4) {
-
-				page = fs.readFileSync('gagne.html', 'UTF-8');
-				marqueurs = {};
-				marqueurs.pseudo = query.pseudo
-				page = page.supplant(marqueurs);
-
-			} else {
-
-			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
-			marqueurs = {};
-			marqueurs.pseudo = query.pseudo;
-			marqueurs.j2 = query.pseudo;
-			marqueurs.j1 = listeConnectes[i].adv;
-			marqueurs.score1 = maPartie[1].J1.points;
-			marqueurs.score2 = maPartie[1].J2.points;
-			page = page.supplant(marqueurs);
-
-			}
-
-		} else {
-
-			maPartie[0].tour = Number(maPartie[0].tour) +1;
-			maPartie[1].J2.question.splice(0, 1);
-
-			contenu_fichier = JSON.stringify(maPartie);
-			fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
-
-			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
-			marqueurs = {};
-			marqueurs.pseudo = query.pseudo;
-			marqueurs.j2 = query.pseudo;
-			marqueurs.j1 = listeConnectes[i].adv;
-			marqueurs.score1 = maPartie[1].J1.points;
-			marqueurs.score2 = maPartie[1].J2.points;
-			page = page.supplant(marqueurs);
-
-		}
-
-	}
 
 res.writeHead(200, {'Content-Type': 'text/html'});
 res.write(page);

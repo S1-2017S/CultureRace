@@ -26,8 +26,13 @@ var trait = function (req, res, query) {
 	var tour;
 	var joueur;
 	var tourJoueur;
+<<<<<<< HEAD
 	var Player;
 	var tourJoueur2;
+=======
+	var tourJoueur2;
+	var pair;
+>>>>>>> 29e8d411e599a57865425843493120338ffeea75
 
 	// ON VERIFIE SI LE JOUEUR A ENTRER LA BONNE REPONSE
 
@@ -62,8 +67,13 @@ var trait = function (req, res, query) {
 	tour = Number(maPartie[0].tour);
 
 	if(tour % 2  === 0) {
+
 		tourJoueur = maPartie[1].J1
 		tourJoueur2 = maPartie[1].J2
+<<<<<<< HEAD
+=======
+		pair = true;
+>>>>>>> 29e8d411e599a57865425843493120338ffeea75
 	} else {
 		tourJoueur = maPartie[1].J2
 		tourJoueur2 = maPartie[1].J1
@@ -80,7 +90,12 @@ var trait = function (req, res, query) {
 		contenu_fichier = JSON.stringify(maPartie);
 		fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
 
+<<<<<<< HEAD
 		if(tour % 2 === 1) {
+=======
+		if(pair = false){
+			if(tourJoueur.points > tourJoueur2.points || tourJoueur2.points > tourJoueur.points) {
+>>>>>>> 29e8d411e599a57865425843493120338ffeea75
 
 			if(tourJoueur.points > 4 && tourJoueur.points > tourJoueur2.points) {
 				console.log("j ai gagner");
@@ -124,7 +139,7 @@ var trait = function (req, res, query) {
 			contenu_connectes = JSON.stringify(listeConnectes);
 			fs.writeFileSync("connectes.json", contenu_connectes, 'UTF-8');
 
-			} else {
+			} else if (tourJoueur.points === tourJoueur2.points){
 
 					marqueurs = {};
 					marqueurs.pseudo = query.pseudo;
@@ -185,10 +200,14 @@ var trait = function (req, res, query) {
 				page = page.supplant(marqueurs);
 
 		}
+<<<<<<< HEAD
 
 	}
 
 
+=======
+	}
+>>>>>>> 29e8d411e599a57865425843493120338ffeea75
 	
 	maPartie[0].tour = Number(maPartie[0].tour) +1;
 	tourJoueur.question.splice(0, 1);

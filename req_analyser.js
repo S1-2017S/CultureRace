@@ -26,6 +26,8 @@ var trait = function (req, res, query) {
 	var tour;
 	var joueur;
 	var tourJoueur;
+	var Player;
+	var tourJoueur2;
 
 	// ON VERIFIE SI LE JOUEUR A ENTRER LA BONNE REPONSE
 
@@ -47,12 +49,24 @@ var trait = function (req, res, query) {
 		}
 	}
 
+	joueur = false;
+	i =0;
+	while(i<listeConnectes.length && joueur === false) {
+		if(listeConnectes[i].pseudo === query.pseudo) {
+			Player = listeConnectes[i].adv
+			joueur = true;
+		} else {
+			i++;
+		}
+	}
 	tour = Number(maPartie[0].tour);
 
 	if(tour % 2  === 0) {
 		tourJoueur = maPartie[1].J1
+		tourJoueur2 = maPartie[1].J2
 	} else {
 		tourJoueur = maPartie[1].J2
+		tourJoueur2 = maPartie[1].J1
 	}
 
 	n = tourJoueur.question[0];
@@ -66,45 +80,121 @@ var trait = function (req, res, query) {
 		contenu_fichier = JSON.stringify(maPartie);
 		fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
 
-		if(tourJoueur.points > 4) {
+		if(tour % 2 === 1) {
 
-			page = fs.readFileSync('gagne.html', 'UTF-8');
-			marqueurs = {};
-			marqueurs.pseudo = query.pseudo
-			page = page.supplant(marqueurs);
+			if(tourJoueur.points > 4 && tourJoueur.points > tourJoueur2.points) {
+				console.log("j ai gagner");
+				page = fs.readFileSync('gagne.html', 'UTF-8');
+				marqueurs = {};
+				marqueurs.pseudo = query.pseudo
+				page = page.supplant(marqueurs);
+
+				joueur = false;
+				i =0;
+				while(i<listeConnectes.length && joueur === false) {
+					if(listeConnectes[i].pseudo === query.pseudo) {
+						listeConnectes[i].etat = "GAGNANT";
+						joueur = true;
+					} else {
+						i++;
+					}
+				}
+			contenu_connectes = JSON.stringify(listeConnectes);
+			fs.writeFileSync("connectes.json", contenu_connectes, 'UTF-8');
+
+
+			} else if(tourJoueur2.points > 4 && tourJoueur.points < tourJoueur2.points) {
+
+				console.log("j ai gagner");
+				page = fs.readFileSync('perd.html', 'UTF-8');
+				marqueurs = {};
+				marqueurs.pseudo = query.pseudo
+				page = page.supplant(marqueurs);
+
+				joueur = false;
+				i =0;
+				while(i<listeConnectes.length && joueur === false) {
+					if(listeConnectes[i].pseudo === query.pseudo) {
+						listeConnectes[i].etat = "PERDANT";
+						joueur = true;
+					} else {
+						i++;
+					}
+				}
+			contenu_connectes = JSON.stringify(listeConnectes);
+			fs.writeFileSync("connectes.json", contenu_connectes, 'UTF-8');
 
 			} else {
 
-				marqueurs = {};
-				marqueurs.pseudo = query.pseudo;
-				marqueurs.j1 = query.pseudo;
-				marqueurs.j2 = listeConnectes[i].adv;
-				marqueurs.score1 = maPartie[1].J1.points;
-				marqueurs.score2 = maPartie[1].J2.points;
-				page = fs.readFileSync('joueur_passif.html', 'UTF-8');
-				page = page.supplant(marqueurs);
+					marqueurs = {};
+					marqueurs.pseudo = query.pseudo;
+					marqueurs.j1 = query.pseudo;
+					marqueurs.j2 = Player;
+					marqueurs.score1 = maPartie[1].J1.points;
+					marqueurs.score2 = maPartie[1].J2.points;
+					page = fs.readFileSync('joueur_passif.html', 'UTF-8');
+					page = page.supplant(marqueurs);
 
 			}
 
 		} else {
 
-
-			page = fs.readFileSync('joueur_passif.html', 'UTF-8');
-			marqueurs = {};
-			marqueurs.pseudo = query.pseudo;
-			marqueurs.j1 = query.pseudo;
-			marqueurs.j2 = listeConnectes[i].adv;
-			marqueurs.score1 = maPartie[1].J1.points;
-			marqueurs.score2 = maPartie[1].J2.points;
-			page = page.supplant(marqueurs);
+				page = fs.readFileSync('joueur_passif.html', 'UTF-8');
+				marqueurs = {};
+				marqueurs.pseudo = query.pseudo;
+				marqueurs.j1 = query.pseudo;
+				marqueurs.j2 = Player;
+				marqueurs.score1 = maPartie[1].J1.points;
+				marqueurs.score2 = maPartie[1].J2.points;
+				page = page.supplant(marqueurs);
 
 		}
-	
-		maPartie[0].tour = Number(maPartie[0].tour) +1;
-		tourJoueur.question.splice(0, 1);
 
-		contenu_fichier = JSON.stringify(maPartie);
-		fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
+	} else {
+
+		if(tourJoueur2.points > 4 && tourJoueur.points < tourJoueur2.points) {
+
+			console.log("J2 perdu");
+			page = fs.readFileSync('perd.html', 'UTF-8');
+			marqueurs = {};
+			marqueurs.pseudo = query.pseudo
+			page = page.supplant(marqueurs);
+
+			joueur = false;
+			i =0;
+			while(i<listeConnectes.length && joueur === false) {
+				if(listeConnectes[i].pseudo === query.pseudo) {
+					listeConnectes[i].etat = "PERDANT";
+					joueur = true;
+				} else {
+					i++;
+				}
+			}
+		contenu_connectes = JSON.stringify(listeConnectes);
+		fs.writeFileSync("connectes.json", contenu_connectes, 'UTF-8');
+
+		} else {
+
+				marqueurs = {};
+				marqueurs.pseudo = query.pseudo;
+				marqueurs.j1 = query.pseudo;
+				marqueurs.j2 = Player;
+				marqueurs.score1 = maPartie[1].J1.points;
+				marqueurs.score2 = maPartie[1].J2.points;
+				page = fs.readFileSync('joueur_passif.html', 'UTF-8');
+				page = page.supplant(marqueurs);
+
+		}
+
+	}
+
+
+	
+	maPartie[0].tour = Number(maPartie[0].tour) +1;
+	tourJoueur.question.splice(0, 1);
+
+	contenu_fichier = JSON.stringify(maPartie);
+	fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
 
 
 res.writeHead(200, {'Content-Type': 'text/html'});

@@ -26,6 +26,10 @@ var req_supprimer_compte = require("./req_supprimer_compte");
 var req_lister_compte = require("./req_lister_compte");
 var req_afficher_menu_questionnaire = require("./req_afficher_menu_questionnaire");
 var req_afficher_page_ajout = require("./req_afficher_page_ajout");
+var req_afficher_choix_questionnaire = require("./req_afficher_choix_questionnaire");
+var req_page_modifier_questionnaire = require("./req_page_modifier_questionnaire");
+var req_supprimer_questionnaire = require("./req_supprimer_questionnaire");
+var req_afficher_page_ajout = require("./req_afficher_page_ajout");
 
 //-------------------------------------------------------------------------
 // FONCTION DE CALLBACK APPELLEE POUR CHAQUE REQUETE
@@ -79,7 +83,19 @@ var traite_requete = function (req, res) {
 		case '/req_afficher_menu_questionnaire':
 			req_afficher_menu_questionnaire(req, res, query);
 			break;
-		case 'req_afficher_page_ajout':
+		case '/req_afficher_page_ajout':
+			req_afficher_page_ajout(req, res, query);
+			break;
+		case '/req_afficher_choix_questionnaire':
+			req_afficher_choix_questionnaire(req, res, query);
+			break;
+		case '/req_page_modifier_questionnaire':
+			req_page_modifier_questionnaire(req, res, query);
+			break;
+		case '/req_supprimer_questionnaire':
+			req_supprimer_questionnaire(req, res, query);
+			break;
+		case '/req_afficher_page_ajout':
 			req_afficher_page_ajout(req, res, query);
 			break;
 		}	

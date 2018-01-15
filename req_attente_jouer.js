@@ -65,8 +65,6 @@ var trait = function (req, res, query) {
 	i = 0;
 	while(i<listeConnectes.length && trouve === false) {
 		if(listeConnectes[i].pseudo === Player) {
-			console.log("dacc");
-			console.log(i);
 			if(listeConnectes[i].etat === "JEU"){
 				trouve = true;
 			} else {
@@ -92,7 +90,7 @@ var trait = function (req, res, query) {
 					marqueurs = {};
 					marqueurs.pseudo = query.pseudo;
 					marqueurs.j1 = query.pseudo;
-					marqueurs.j2 = Player1;
+					marqueurs.j2 = Player;
 					marqueurs.score1 = maPartie[1].J1.points;
 					marqueurs.score2 = maPartie[1].J2.points;
 
@@ -107,7 +105,7 @@ var trait = function (req, res, query) {
 				marqueurs = {};
 				marqueurs.pseudo = query.pseudo;
 				marqueurs.j1 = query.pseudo;
-				marqueurs.j2 = Player1;
+				marqueurs.j2 = Player;
 				marqueurs.score1 = maPartie[1].J1.points;
 				marqueurs.score2 = maPartie[1].J2.points;
 				page = fs.readFileSync('joueur_passif.html', 'UTF-8');
@@ -121,7 +119,7 @@ var trait = function (req, res, query) {
 				marqueurs = {};
 				marqueurs.pseudo = query.pseudo;
 				marqueurs.j2 = query.pseudo;
-				marqueurs.j1 = Player1;
+				marqueurs.j1 = Player;
 				marqueurs.score1 = maPartie[1].J1.points;
 				marqueurs.score2 = maPartie[1].J2.points;
 				page = fs.readFileSync('joueur_passif.html', 'UTF-8');
@@ -139,7 +137,7 @@ var trait = function (req, res, query) {
 					marqueurs = {};
 					marqueurs.pseudo = query.pseudo;
 					marqueurs.j2 = query.pseudo;
-					marqueurs.j1 = Player1;
+					marqueurs.j1 = Player;
 					marqueurs.score1 = maPartie[1].J1.points;
 					marqueurs.score2 = maPartie[1].J2.points;
 
@@ -156,20 +154,17 @@ var trait = function (req, res, query) {
 
 	//if(fin = true) {
 
-console.log("okk man");
 
 		trouve = false;
 		i = 0;
 		while(i<listeConnectes.length && trouve === false) {
 			if(listeConnectes[i].pseudo === query.pseudo) {
 				Player = listeConnectes[i].adv;
-				console.log("pute");
 				trouve = true;
 			}else{
 			i++;
 			}
 		}
-console.log("okk");
 		trouve = false;
 		i = 0;
 		while(i<listeConnectes.length && trouve === false) {

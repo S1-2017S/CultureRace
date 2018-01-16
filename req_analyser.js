@@ -82,7 +82,7 @@ var trait = function (req, res, query) {
 
 		if(tour % 2 === 1) {
 
-			if(tourJoueur.points > 4 && tourJoueur.points > tourJoueur2.points) {
+			if(tourJoueur.points > 1 && tourJoueur.points > tourJoueur2.points) {
 				page = fs.readFileSync('gagne.html', 'UTF-8');
 				marqueurs = {};
 				marqueurs.pseudo = query.pseudo
@@ -102,7 +102,7 @@ var trait = function (req, res, query) {
 			fs.writeFileSync("connectes.json", contenu_connectes, 'UTF-8');
 
 
-			} else if(tourJoueur2.points > 4 && tourJoueur.points < tourJoueur2.points) {
+			} else if(tourJoueur2.points > 1 && tourJoueur.points < tourJoueur2.points) {
 
 				page = fs.readFileSync('perd.html', 'UTF-8');
 				marqueurs = {};
@@ -133,7 +133,7 @@ var trait = function (req, res, query) {
 					page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 					page = page.supplant(marqueurs);
 
-			}else if (tourJoueur.points < 5 || tourJoueur2.points < 5) {
+			}else if (tourJoueur.points < 2 || tourJoueur2.points < 2) {
 					
 					marqueurs = {};
 					marqueurs.pseudo = query.pseudo;
@@ -161,7 +161,7 @@ var trait = function (req, res, query) {
 
 	} else {
 
-		if(tourJoueur2.points > 4 && tourJoueur.points < tourJoueur2.points) {
+		if(tourJoueur2.points > 1 && tourJoueur.points < tourJoueur2.points) {
 
 			page = fs.readFileSync('perd.html', 'UTF-8');
 			marqueurs = {};

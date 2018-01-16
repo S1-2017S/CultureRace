@@ -37,17 +37,6 @@ var trait = function (req, res, query) {
 	contenu_connectes = fs.readFileSync("connectes.json", 'UTF-8');
     listeConnectes = JSON.parse(contenu_connectes);
 
-	joueur = false;
-	i =0;
-	while(i<listeConnectes.length && joueur === false) {
-		if(listeConnectes[i].pseudo === query.pseudo) {
-			contenu_partie = fs.readFileSync("partie"+listeConnectes[i].NP+".json", 'UTF-8');
-			maPartie = JSON.parse(contenu_partie);
-			joueur = true;
-		} else {
-		i++;
-		}
-	}
 
 	trouve = false;
 	i = 0;
@@ -76,6 +65,18 @@ var trait = function (req, res, query) {
 	}
 
 	if(trouve === true) {
+		joueur = false;
+		i =0;
+		while(i<listeConnectes.length && joueur === false) {
+			if(listeConnectes[i].pseudo === query.pseudo) {
+				contenu_partie = fs.readFileSync("partie"+listeConnectes[i].NP+".json", 'UTF-8');
+				maPartie = JSON.parse(contenu_partie);
+				joueur = true;
+			} else {
+			i++;
+			}
+		}
+
 		tour = Number(maPartie[0].tour);
 		if(query.pseudo === listeConnectes[i].NP) {
 			if(tour % 2 === 0) {
@@ -152,9 +153,6 @@ var trait = function (req, res, query) {
 		}
 	} else {
 
-	//if(fin = true) {
-
-
 		trouve = false;
 		i = 0;
 		while(i<listeConnectes.length && trouve === false) {
@@ -179,6 +177,12 @@ var trait = function (req, res, query) {
 
 				} else if(listeConnectes[i].etat === "PERDANT") {
 					page = fs.readFileSync('gagne.html', 'UTF-8');
+					marqueurs = {};
+					marqueurs.pseudo = query.pseudo;
+					page = page.supplant(marqueurs);
+					trouve = true;
+				} else if(listeConnectes[i].etat === "LIBRE") {
+					page = fs.readFileSync('quit.html', 'UTF-8');
 					marqueurs = {};
 					marqueurs.pseudo = query.pseudo;
 					page = page.supplant(marqueurs);

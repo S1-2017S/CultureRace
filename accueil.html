@@ -3,23 +3,16 @@
 <head>
 	<meta charset ="UTF-8">
 	<title>Page connexion</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<h1> Culture Race! </h1>
-<h3> Identification </h3>
+<div class="accueil"><h2> Identification </h2>
 <form action="/req_identifier" method="GET">
-<p>Pseudo:	<input type="text" name="pseudo" value=""</p></br>
-<p>Mot de Passe: <input type="text" name="password" value=""></p></br>
+<p class="id"><b>Pseudo:	</b><input type="text" name="pseudo" value=""</p></br>
+<p class="id"><b>Mot de Passe: </b><input type="password" name="password" value=""></p></br>
 <input type="submit" name="action" value="Connexion">
 </form>
 
-<p> Vous n'avez pas de compte? <a href ="/req_afficher_formulaire_inscription">Cliquez ici!</a>
-<style>
-h1{
-text-align: center;
-}
-body{
-}
-
-</style>
+<p class="pas_de_compte"><b> Vous n'avez pas de compte? <a href ="/req_afficher_formulaire_inscription" class="ahref">Cliquez ici!</a></b>
+</div>
 </body>

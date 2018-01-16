@@ -12,7 +12,6 @@ var trait = function (req, res, query) {
 	var marqueurs;
 	var page;
 	var i;
-	var j;
 	var liste;
 	var affichage;
 	var contenu = {};
@@ -43,12 +42,13 @@ var trait = function (req, res, query) {
 			console.log("nope" + i);
 		}
 
-		affichage = affichage + "Question : <input type='textarea' name='questions'" + i + "' value='" + contenu[i].question + "' size='60px'><br><input type='radio' name='réponse" + i + "' &nbsp "+ br0 +"><input type='textarea' name='réponse0' value= '" + contenu[i].reponses[0] + "'><br><input type='radio' name='réponse" + i + "' &nbsp "+ br1 +"><input type='textarea' name='réponse1' value= '" + contenu[i].reponses[1] + "'><br><input type='radio' name='réponse" + i + "' &nbsp "+ br2 +"><input type='textarea' name='réponse2' value='" + contenu[i].reponses[2] + "'><br><input type='radio' name='réponse" + i + "' &nbsp " +br3 +"><input type='textarea' name='réponse3' value= '" + contenu[i].reponses[3] + "'><br><br>\n"
+		affichage = affichage + "Question : <input type='textarea' name='questions'" + i + "' value='" + contenu[i].question + "' size='60px'><br><input type='radio' name='reponse" + i + "' &nbsp "+ br0 +"><input type='textarea' name='reponse0' value= '" + contenu[i].reponses[0] + "'><br><input type='radio' name='reponse" + i + "' &nbsp "+ br1 +"><input type='textarea' name='reponse1' value= '" + contenu[i].reponses[1] + "'><br><input type='radio' name='reponse" + i + "' &nbsp "+ br2 +"><input type='textarea' name='reponse2' value='" + contenu[i].reponses[2] + "'><br><input type='radio' name='reponse" + i + "' &nbsp " +br3 +"><input type='textarea' name='reponse3' value= '" + contenu[i].reponses[3] + "'><br><br>\n"
 	}
 
 
 	page = fs.readFileSync('affichage_questionnaire.html','UTF-8');
 	marqueurs = {};
+	marqueurs.modifie = "";
 	marqueurs.affichage = affichage;
 	page = page.supplant(marqueurs);
 

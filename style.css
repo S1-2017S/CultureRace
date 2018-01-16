@@ -1,0 +1,86 @@
+body{
+background-image: url(https://cdn.discordapp.com/attachments/380338031326134272/402768871557431306/wallpaper.png);
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+.accueil{
+margin-left: auto;
+margin-top:240px;
+text-align:center;
+}
+
+.accueil h2 {
+margin-left: auto;
+margin-top: 330px;
+text-align:center;
+color:white;
+}
+.accueil .pas_de_compte{
+color:white;
+}
+.accueil .ahref{
+color:white;
+}
+.accueil .id{
+color:white;
+}
+
+.btn1{
+display: block;
+margin-left: auto;
+margin-right: auto;
+margin-top: 350px;
+width: 150px;
+height: 50px;
+font-size: 30px;
+}
+
+.btn2{
+display: block;
+margin-left: auto;
+margin-right: auto;
+margin-top: 30px;
+width: 150px;
+height: 50px;
+font-size: 30px;
+}
+
+.S_A{
+text-align:center;
+color: white;
+margin-top: 280px;
+}
+
+.jeu{
+background-image:url(https://cdn.discordapp.com/attachments/380338031326134272/402822284387287040/wallpaper_vide.png);
+}
+
+.wrap{
+text-align:center;;
+color:white;
+font-size:30px;
+}
+
+.ragequit{
+text-align:left;
+margin:auto;
+}
+
+.Qs{
+text-align:center;
+margin:25px;
+font-size:20px;
+}
+
+.Qs button{
+width: 200px;
+height: 100px;
+font-size:15px;
+text-align:center;
+margin-top:10px;
+margin-left:10px;
+}
+

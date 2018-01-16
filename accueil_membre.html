@@ -3,46 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title> Page d'accueil</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-<h1> Culture Race!</h1>
+<body class="ac">
 <form action="/req_attendre" method="GET">
-<button name = "pseudo" name ="pseudo" value = "{pseudo}">Jouer</button>
+<button class="btn1" name = "pseudo" name ="pseudo" value = "{pseudo}">Jouer</button>
 </form>
-<form action="/req_afficher_scores" method="GET">
-<button name = "pseudo" name ="pseudo" value = "{pseudo}">Scores</button>
-</form>
-<button type="aide" name ="help" value = aide> Aide</button><br>
 <form action="/req_deconnecter" method="GET">
-<button name="pseudo" name ="pseudo" value = "{pseudo}"> Quitter</button></form><br>
-<style>
-
-
-h1{
-font-size: 100px;
-text-align: center;
-}
-
-
-
-button{
-display: block;
-margin-left: auto;
-margin-right: auto;
-width: 150px;
-height: 50px;
-font-size: 30px;
-}
-
-.best_score{
-bottom:0;
-}
-
-body{
-background-color: #7FFFD4;
-}
-
-</style>
+<button class="btn2" name="pseudo" name ="pseudo" value = "{pseudo}"> Quitter</button>
+</form>
 </body>
-
-

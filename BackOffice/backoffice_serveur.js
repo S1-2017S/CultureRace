@@ -30,6 +30,7 @@ var req_afficher_choix_questionnaire = require("./req_afficher_choix_questionnai
 var req_page_modifier_questionnaire = require("./req_page_modifier_questionnaire");
 var req_supprimer_questionnaire = require("./req_supprimer_questionnaire");
 var req_afficher_page_ajout = require("./req_afficher_page_ajout");
+var req_modifier_questionnaire = require("./req_modifier_questionnaire");
 
 //-------------------------------------------------------------------------
 // FONCTION DE CALLBACK APPELLEE POUR CHAQUE REQUETE
@@ -97,6 +98,9 @@ var traite_requete = function (req, res) {
 			break;
 		case '/req_afficher_page_ajout':
 			req_afficher_page_ajout(req, res, query);
+			break;
+		case '/req_modifier_questionnaire.js':
+			req_modifier_questionnaire(req, res, query);
 			break;
 		}	
 	} catch (e) {

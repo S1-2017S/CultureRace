@@ -3,33 +3,14 @@
 <head>
 	<meta charset ="UTF-8">
 	<title>Page jeu passif</title>
-	<link rel="stylesheet" type="text/css">
-	<meta http-equiv="refresh" content="1;url=req_attente_jouer?pseudo={pseudo}" />
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta http-equiv="refresh" content="1;url=req_attente_jouer?pseudo={pseudo}"/>
 
 </head>
-<body>
-
-<div class="jeu">
-</div>
-
-<div class="wrap">
-<p> {j1} : {score1}</p>
+<body class="jeu">
+<div class="wrap"><p><h2><u>Scores </u></h2> {j1} : {score1}</p>
 <p> {j2} : {score2} </p></br>
-
-
-
-<p><i>Veuillez attendre votre tour</i></p>
+<p><i>Veuillez attendre votre tour :)</i></p>
 </div>
 </body>
-
-<style>
-
-.jeu{
-float:left;
-}
-.wrap{
-float:right;
-text-align: center;
-}
-</style>
-</body>
+</html>

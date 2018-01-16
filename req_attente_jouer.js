@@ -35,7 +35,7 @@ var trait = function (req, res, query) {
 	monQuestionnaire = JSON.parse(contenu_questionnaire);
 
 	contenu_connectes = fs.readFileSync("connectes.json", 'UTF-8');
-    listeConnectes = JSON.parse(contenu_connectes);
+	listeConnectes = JSON.parse(contenu_connectes);
 
 
 	trouve = false;
@@ -46,7 +46,7 @@ var trait = function (req, res, query) {
 			Player1 = listeConnectes[i].pseudo;
 			trouve = true;
 		}else{
-		i++;
+			i++;
 		}
 	}
 
@@ -60,7 +60,7 @@ var trait = function (req, res, query) {
 				i++;
 			}
 		}else{
-		i++;
+			i++;
 		}
 	}
 
@@ -73,7 +73,7 @@ var trait = function (req, res, query) {
 				maPartie = JSON.parse(contenu_partie);
 				joueur = true;
 			} else {
-			i++;
+				i++;
 			}
 		}
 
@@ -81,24 +81,24 @@ var trait = function (req, res, query) {
 		if(query.pseudo === listeConnectes[i].NP) {
 			if(tour % 2 === 0) {
 
-					questionnaire = {};
-					questionnaire.question = monQuestionnaire[maPartie[1].J1.question[0]].question
+				questionnaire = {};
+				questionnaire.question = monQuestionnaire[maPartie[1].J1.question[0]].question
 					questionnaire.reponses1 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[0];
-					questionnaire.reponses2 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[1];
-					questionnaire.reponses3 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[2];
-					questionnaire.reponses4 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[3];
+				questionnaire.reponses2 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[1];
+				questionnaire.reponses3 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[2];
+				questionnaire.reponses4 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[3];
 
-					marqueurs = {};
-					marqueurs.pseudo = query.pseudo;
-					marqueurs.j1 = query.pseudo;
-					marqueurs.j2 = Player;
-					marqueurs.score1 = maPartie[1].J1.points;
-					marqueurs.score2 = maPartie[1].J2.points;
+				marqueurs = {};
+				marqueurs.pseudo = query.pseudo;
+				marqueurs.j1 = query.pseudo;
+				marqueurs.j2 = Player;
+				marqueurs.score1 = maPartie[1].J1.points;
+				marqueurs.score2 = maPartie[1].J2.points;
 
-					page = fs.readFileSync('joueur_actif.html', 'UTF-8');
+				page = fs.readFileSync('joueur_actif.html', 'UTF-8');
 
-					page = page.supplant(marqueurs);
-					page = page.supplant(questionnaire);
+				page = page.supplant(marqueurs);
+				page = page.supplant(questionnaire);
 
 
 			} else {
@@ -128,24 +128,24 @@ var trait = function (req, res, query) {
 
 			} else {
 
-					questionnaire = {};
-					questionnaire.question = monQuestionnaire[maPartie[1].J2.question[0]].question
+				questionnaire = {};
+				questionnaire.question = monQuestionnaire[maPartie[1].J2.question[0]].question
 					questionnaire.reponses1 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[0];
-					questionnaire.reponses2 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[1];
-					questionnaire.reponses3 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[2];
-					questionnaire.reponses4 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[3];
+				questionnaire.reponses2 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[1];
+				questionnaire.reponses3 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[2];
+				questionnaire.reponses4 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[3];
 
-					marqueurs = {};
-					marqueurs.pseudo = query.pseudo;
-					marqueurs.j2 = query.pseudo;
-					marqueurs.j1 = Player;
-					marqueurs.score1 = maPartie[1].J1.points;
-					marqueurs.score2 = maPartie[1].J2.points;
+				marqueurs = {};
+				marqueurs.pseudo = query.pseudo;
+				marqueurs.j2 = query.pseudo;
+				marqueurs.j1 = Player;
+				marqueurs.score1 = maPartie[1].J1.points;
+				marqueurs.score2 = maPartie[1].J2.points;
 
-					page = fs.readFileSync('joueur_actif.html', 'UTF-8');
+				page = fs.readFileSync('joueur_actif.html', 'UTF-8');
 
-					page = page.supplant(marqueurs);
-					page = page.supplant(questionnaire);
+				page = page.supplant(marqueurs);
+				page = page.supplant(questionnaire);
 
 			}
 
@@ -160,7 +160,7 @@ var trait = function (req, res, query) {
 				Player = listeConnectes[i].adv;
 				trouve = true;
 			}else{
-			i++;
+				i++;
 			}
 		}
 		trouve = false;
@@ -175,24 +175,70 @@ var trait = function (req, res, query) {
 					page = page.supplant(marqueurs);
 					trouve = true;
 
+					joueur = false;
+					i =0;
+					while(i<listeConnectes.length && joueur === false) {
+						if(listeConnectes[i].pseudo === query.pseudo) {
+							listeConnectes[i].etat = "PERDANT";
+							joueur = true;
+						} else {
+							i++;
+						}
+					}
+					contenu_connectes = JSON.stringify(listeConnectes);
+					fs.writeFileSync("connectes.json", contenu_connectes, 'UTF-8');
+
 				} else if(listeConnectes[i].etat === "PERDANT") {
+
 					page = fs.readFileSync('gagne.html', 'UTF-8');
 					marqueurs = {};
 					marqueurs.pseudo = query.pseudo;
 					page = page.supplant(marqueurs);
 					trouve = true;
+
+					joueur = false;
+					i =0;
+					while(i<listeConnectes.length && joueur === false) {
+						if(listeConnectes[i].pseudo === query.pseudo) {
+							listeConnectes[i].etat = "GAGNANT";
+							joueur = true;
+						} else {
+							i++;
+						}
+					}
+					contenu_connectes = JSON.stringify(listeConnectes);
+					fs.writeFileSync("connectes.json", contenu_connectes, 'UTF-8');
+
+
 				} else if(listeConnectes[i].etat === "LIBRE") {
+
 					page = fs.readFileSync('quit.html', 'UTF-8');
 					marqueurs = {};
 					marqueurs.pseudo = query.pseudo;
 					page = page.supplant(marqueurs);
 					trouve = true;
+
+					joueur = false;
+					i =0;
+					while(i<listeConnectes.length && joueur === false) {
+						if(listeConnectes[i].pseudo === query.pseudo) {
+							listeConnectes[i].etat = "LIBRE";
+							joueur = true;
+						} else {
+							i++;
+						}
+					}
+					contenu_connectes = JSON.stringify(listeConnectes);
+					fs.writeFileSync("connectes.json", contenu_connectes, 'UTF-8');
+
+
 				}
+
 			}else{
-			i++;
+				i++;
 			}
 		}
-		
+
 	}
 
 	res.writeHead(200, {'Content-type': 'text/html'});

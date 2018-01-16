@@ -62,7 +62,6 @@ var trait = function (req, res, query) {
 	tour = Number(maPartie[0].tour);
 
 	if(tour % 2  === 0) {
-
 		tourJoueur = maPartie[1].J1
 		tourJoueur2 = maPartie[1].J2
 	} else {
@@ -83,8 +82,7 @@ var trait = function (req, res, query) {
 
 		if(tour % 2 === 1) {
 
-			if(tourJoueur.points > 4 && tourJoueur.points > tourJoueur2.points) {
-				console.log("j ai gagner");
+			if(tourJoueur.points > 1 && tourJoueur.points > tourJoueur2.points) {
 				page = fs.readFileSync('gagne.html', 'UTF-8');
 				marqueurs = {};
 				marqueurs.pseudo = query.pseudo
@@ -104,9 +102,8 @@ var trait = function (req, res, query) {
 			fs.writeFileSync("connectes.json", contenu_connectes, 'UTF-8');
 
 
-			} else if(tourJoueur2.points > 4 && tourJoueur.points < tourJoueur2.points) {
+			} else if(tourJoueur2.points > 1 && tourJoueur.points < tourJoueur2.points) {
 
-				console.log("j ai gagner");
 				page = fs.readFileSync('perd.html', 'UTF-8');
 				marqueurs = {};
 				marqueurs.pseudo = query.pseudo
@@ -136,6 +133,17 @@ var trait = function (req, res, query) {
 					page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 					page = page.supplant(marqueurs);
 
+			}else if (tourJoueur.points < 2 || tourJoueur2.points < 2) {
+					
+					marqueurs = {};
+					marqueurs.pseudo = query.pseudo;
+					marqueurs.j1 = query.pseudo;
+					marqueurs.j2 = Player;
+					marqueurs.score1 = maPartie[1].J1.points;
+					marqueurs.score2 = maPartie[1].J2.points;
+					page = fs.readFileSync('joueur_passif.html', 'UTF-8');
+					page = page.supplant(marqueurs);
+
 			}
 
 		} else {
@@ -153,9 +161,8 @@ var trait = function (req, res, query) {
 
 	} else {
 
-		if(tourJoueur2.points > 4 && tourJoueur.points < tourJoueur2.points) {
+		if(tourJoueur2.points > 1 && tourJoueur.points < tourJoueur2.points) {
 
-			console.log("J2 perdu");
 			page = fs.readFileSync('perd.html', 'UTF-8');
 			marqueurs = {};
 			marqueurs.pseudo = query.pseudo
@@ -190,6 +197,7 @@ var trait = function (req, res, query) {
 	}
 
 
+	
 	maPartie[0].tour = Number(maPartie[0].tour) +1;
 	tourJoueur.question.splice(0, 1);
 
@@ -197,11 +205,13 @@ var trait = function (req, res, query) {
 	fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
 
 
-	res.writeHead(200, {'Content-Type': 'text/html'});
-	res.write(page);
-	res.end();
+res.writeHead(200, {'Content-Type': 'text/html'});
+res.write(page);
+res.end();
 };
 
 //=============================================================================
 
 module.exports = trait;
+
+

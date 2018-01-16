@@ -19,6 +19,7 @@ var trait = function (req, res, query) {
    var i;
    var trouve;
    var Joueur;
+   var page;
 
    contenu_fichier = fs.readFileSync('connectes.json', 'UTF-8');
    listeConnectes = JSON.parse(contenu_fichier);
@@ -27,15 +28,15 @@ var trait = function (req, res, query) {
    //ON REVIENT A ACCUEIL MEMBRE
 
 
-   trouve = false;
-   i=0
+	trouve = false;
+	i=0;
 	while(i<listeConnectes.length && trouve === false) {
 		if(listeConnectes[i].pseudo === query.pseudo) {
 			Joueur = listeConnectes[i].adv;
 			trouve=true;
-	} else {
-	i++
-	}
+		} else {
+			i++
+		}
 	}
 	
 	i=0;
@@ -68,8 +69,8 @@ var trait = function (req, res, query) {
 
    marqueurs = {};
    marqueurs.pseudo = query.pseudo;
-
    page = fs.readFileSync('accueil_membre.html', 'UTF-8');
+   page = page.supplant(marqueurs);
 
    res.writeHead(200, {'Content-Type': 'text/html'});
    res.write(page);

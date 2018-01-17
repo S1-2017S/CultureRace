@@ -11,19 +11,25 @@ require('remedial');
 var trait = function (req, res, query) {
 	var page;
 	var marqueurs;
+	var i;
+	var modifie;
 	var questions;
 	var reponses;
-	var radio;
-	var affichage;
-	var i;
+	var radios;
+	var d;
 
-	//ON CREE UN NOUVEAU JSON PORTANT LE MEME NOM QUE LE PRECEDENT, EN REPRE	NANT LES DONNEES DE LA PAGE AINSI QUE LES MODIFICATIONS APPORTEES.
+	//ON CREE UN NOUVEAU JSON PORTANT LE MEME NOM QUE LE PRECEDENT, 
+	//EN REPRENANT LES DONNEES DE LA PAGE AINSI QUE LES MODIFICATIONS APPORTEES.
 
-	var questions = document.querySelectorAll('input[name=questions]');
-	var reponses = document.querySelectorAll('input[name=reponse]');
-	var radios = document.querySelectorAll('input[name=reponse]');
-	
-//	for(i=0;i<
+	i=0;
+	questions = query.questions;
+	reponses = query.questions;
+	radios = query.br;
+
+	console.log(questions);
+	console.log(reponses);
+	console.log(radiots);
+	for(i=0;i<questions.length;i++)
 
 	page = fs.readFileSync('affichage_questionnaire.html','UTF-8');
 	marqueurs = {};

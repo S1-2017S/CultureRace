@@ -13,7 +13,7 @@ require('remedial');
 var trait = function (req, res, query) {
 	var page;
 
-	// AFFICHAGE DE LA PAGE DE GESTION DE COMPTES
+	// AFFICHAGE DE LA PAGE DE GESTION DES QUESTIONNAIRES
 
 	page = fs.readFileSync('menu_questionnaire.html','UTF-8');
 

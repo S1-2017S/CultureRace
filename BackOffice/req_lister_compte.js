@@ -24,6 +24,8 @@ var trait = function (req, res, query) {
 	listePseudo = fs.readFileSync('../membres.json','utf-8');
 	membre = JSON.parse(listePseudo);
 
+	//ON AFFICHE LES MEMBRES UN PAR UN SOUS FORME DE TABLEAU
+
 	affichage = "";
 	for(i=0;i<membre.length;i++){
 	affichage = affichage + "<tr><td>" + membre[i].pseudo + "</td><td>" + membre[i].password + "</td></tr>";

@@ -17,15 +17,23 @@ margin-left: auto;
 margin-top: 330px;
 text-align:center;
 color:white;
+font-size:30px;
 }
 .accueil .pas_de_compte{
 color:white;
+font-size:25px;
 }
 .accueil .ahref{
 color:white;
 }
 .accueil .id{
 color:white;
+font-size:30px;
+}
+.accueil .pw{
+color:white;
+margin-right:50px;
+font-size:30px;
 }
 
 .btn1{
@@ -52,6 +60,7 @@ font-size: 30px;
 text-align:center;
 color: white;
 margin-top: 280px;
+font-size: 30px;
 }
 
 .jeu{
@@ -61,24 +70,25 @@ background-image:url(https://cdn.discordapp.com/attachments/380338031326134272/4
 .wrap{
 text-align:center;;
 color:white;
-font-size:30px;
+font-size:35px;
 }
 
 .ragequit{
 text-align:left;
 margin:auto;
+font-size:30px;
 }
 
 .Qs{
 text-align:center;
 margin:25px;
-font-size:20px;
+font-size:30px;
 }
 
 .Qs button{
 width: 200px;
 height: 100px;
-font-size:15px;
+font-size:25px;
 text-align:center;
 margin-top:10px;
 margin-left:10px;

@@ -21,15 +21,6 @@ var trait = function (req, res, query) {
 	//ON CREE UN NOUVEAU JSON PORTANT LE MEME NOM QUE LE PRECEDENT, 
 	//EN REPRENANT LES DONNEES DE LA PAGE AINSI QUE LES MODIFICATIONS APPORTEES.
 
-	i=0;
-	questions = query.questions;
-	reponses = query.questions;
-	radios = query.br;
-
-	console.log(questions);
-	console.log(reponses);
-	console.log(radiots);
-	for(i=0;i<questions.length;i++)
 
 	page = fs.readFileSync('affichage_questionnaire.html','UTF-8');
 	marqueurs = {};

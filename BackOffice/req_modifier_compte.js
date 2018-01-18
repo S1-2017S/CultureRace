@@ -30,7 +30,6 @@ var trait = function (req, res, query) {
 			membre[i].password = query.password;
 			listePseudo = JSON.stringify(membre);
 			fs.writeFileSync("../membres.json", listePseudo, 'UTF-8');
-			break;
 		}	
 		i++;
 	}
@@ -44,7 +43,6 @@ var trait = function (req, res, query) {
 	res.writeHead(200, {'Content-Type': 'text/html'});
 	res.write(page);
 	res.end();
-
 };
 
 //----------------------------------------------------------------

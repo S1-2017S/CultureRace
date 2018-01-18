@@ -1,7 +1,7 @@
 //====================================================================
 // Traitement de "req_attendre"
 // Auteur : Achraf, Djibril, Ismael
-// Version : 27/11/2017
+// Version : 11/01/2017
 //====================================================================
 
 "use strict";
@@ -38,11 +38,8 @@ var trait = function (req, res, query) {
 	contenu_fichier = fs.readFileSync("connectes.json", 'UTF-8');
 	listeConnectes = JSON.parse(contenu_fichier);
 
-	nouveau = {};
-	nouveau.pseudo = query.pseudo;
-	nouveau.etat = "ATTENTE";
 
-	// ON VERIFIE SI QUELQU'UN EST DEJA CONNECTE 
+	// ON VERIFIE SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE 
 
 	Joueur = false;
 	i=0;
@@ -50,12 +47,18 @@ var trait = function (req, res, query) {
 		if(listeConnectes[i].etat === "ATTENTE") {
 			J2 = listeConnectes[i].pseudo;
 			Joueur = true;
-		}
+		}else {
 		i++;
+		}
 	}
 
-
+	// SI IL N'Y A PERSONNE EN SALLE D'ATTENTE
 	if(Joueur === false) {
+
+	// ON MODIFIE L'ETAT DE LA PERSONNE PUIS ON LE REECRIT DANS LE JSON
+		nouveau = {};
+		nouveau.pseudo = query.pseudo;
+		nouveau.etat = "ATTENTE";
 
 		for(i=0; i<listeConnectes.length; i++) {
 			if(listeConnectes[i].pseudo === query.pseudo) {
@@ -66,12 +69,11 @@ var trait = function (req, res, query) {
 		contenu_fichier = JSON.stringify(listeConnectes);
 		fs.writeFileSync("connectes.json", contenu_fichier, 'UTF-8');
 
-		// ON RENVOIT UNE PAGE HTML 
-		// LE JOUEUR EST REDIRIGE VERS LA SALLE D'ATTENTE
+		// LE JOUEUR EST REDIRIGE VERS LA PAGE SALLE D'ATTENTE
 
 		page = fs.readFileSync('salle_attente.html', 'UTF-8');
 
-		// ON CREE LE JSON DE LA PARTIE;
+		// ON LE CREE LE JSON DE LA PARTIE;
 
 		contenu = fs.readFileSync("questionnaire.json", "utf-8");
 		questionnaire = JSON.parse(contenu);
@@ -103,12 +105,14 @@ var trait = function (req, res, query) {
 
 
 
-	// SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE, ALORS LE JOUEUR EST REDIRIGE VERS LA PAGE JOUEUR PASSIF
-
 	} else {
+
+	// SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE, ALORS LE JOUEUR EST REDIRIGE VERS LA PAGE JOUEUR PASSIF
 
 		contenu_partie = fs.readFileSync("partie"+J2+".json", 'UTF-8');
 		maPartie = JSON.parse(contenu_partie);
+
+	// ON LIT PUIS ON MODIFIE ET ENFIN ON REECRIT LE JSON DES JOUEURS CONNECTES
 
 		contenu_partie = JSON.stringify(maPartie);
 		fs.writeFileSync("partie"+J2+".json", contenu_partie, 'UTF-8');
@@ -139,8 +143,7 @@ var trait = function (req, res, query) {
 		contenu_fichier = JSON.stringify(listeConnectes);
 		fs.writeFileSync("connectes.json", contenu_fichier, 'UTF-8');
 
-		// ON RENVOIT UNE PAGE HTML 
-		// LE JOUEUR EST REDIRIGE VERS LA SALLE D'ATTENTE
+		// LE JOUEUR EST REDIRIGE VERS LA PAGE JEU PASSIF 
 
 		page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 

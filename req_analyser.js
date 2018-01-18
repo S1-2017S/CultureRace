@@ -29,10 +29,8 @@ var trait = function (req, res, query) {
 	var Player;
 	var tourJoueur2;
 
-	// ON VERIFIE SI LE JOUEUR A ENTRER LA BONNE REPONSE
+	// ON RECUPERE LES DONNEES DE LA PARTIE EN COURS
 
-	contenu_questionnaire = fs.readFileSync("questionnaire.json", 'UTF-8');
-	monQuestionnaire = JSON.parse(contenu_questionnaire);
 
 	contenu_connectes = fs.readFileSync("connectes.json", 'UTF-8');
 	listeConnectes = JSON.parse(contenu_connectes);
@@ -43,22 +41,13 @@ var trait = function (req, res, query) {
 		if(listeConnectes[i].pseudo === query.pseudo) {
 			contenu_fichier = fs.readFileSync("partie"+listeConnectes[i].NP+".json", 'UTF-8');
 			maPartie = JSON.parse(contenu_fichier);
-			joueur = true;
-		} else {
-			i++;
-		}
-	}
-
-	joueur = false;
-	i =0;
-	while(i<listeConnectes.length && joueur === false) {
-		if(listeConnectes[i].pseudo === query.pseudo) {
 			Player = listeConnectes[i].adv
 			joueur = true;
 		} else {
 			i++;
 		}
 	}
+
 	tour = Number(maPartie[0].tour);
 
 	if(tour % 2  === 0) {
@@ -69,20 +58,31 @@ var trait = function (req, res, query) {
 		tourJoueur2 = maPartie[1].J1
 	}
 
+	// ON ANALYSE SI LA REPONSE DU JOUEUR EST CORRECTE
+
+	contenu_questionnaire = fs.readFileSync("questionnaire.json", 'UTF-8');
+	monQuestionnaire = JSON.parse(contenu_questionnaire);
+
 	n = tourJoueur.question[0];
 	rep = Number(query.reponse);
 	bonRep = Number(monQuestionnaire[n].br);
 
 	if(rep === bonRep) {
 
+		// SI OUI
 		tourJoueur.points =  Number(tourJoueur.points) + 1;
 
 		contenu_fichier = JSON.stringify(maPartie);
 		fs.writeFileSync("partie"+listeConnectes[i].NP+".json", contenu_fichier, 'UTF-8');
 
+		// ANALYSE DE LA REPONSE SI TOUR IMPAIR
+
 		if(tour % 2 === 1) {
 
-			if(tourJoueur.points > 1 && tourJoueur.points > tourJoueur2.points) {
+		// SI LE JOUEUR 1 GAGNE
+
+			if(tourJoueur.points > 4 && tourJoueur.points > tourJoueur2.points) {
+
 				page = fs.readFileSync('gagne.html', 'UTF-8');
 				marqueurs = {};
 				marqueurs.pseudo = query.pseudo
@@ -101,8 +101,9 @@ var trait = function (req, res, query) {
 			contenu_connectes = JSON.stringify(listeConnectes);
 			fs.writeFileSync("connectes.json", contenu_connectes, 'UTF-8');
 
+			// SI LE JOUEUR 2 GAGNE
 
-			} else if(tourJoueur2.points > 1 && tourJoueur.points < tourJoueur2.points) {
+			} else if(tourJoueur2.points > 4 && tourJoueur.points < tourJoueur2.points) {
 
 				page = fs.readFileSync('perd.html', 'UTF-8');
 				marqueurs = {};
@@ -122,6 +123,7 @@ var trait = function (req, res, query) {
 			contenu_connectes = JSON.stringify(listeConnectes);
 			fs.writeFileSync("connectes.json", contenu_connectes, 'UTF-8');
 
+			// EN CAS D'EGALITE - MORT SUBITE
 			} else if (tourJoueur.points === tourJoueur2.points){
 
 					marqueurs = {};
@@ -133,7 +135,9 @@ var trait = function (req, res, query) {
 					page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 					page = page.supplant(marqueurs);
 
-			}else if (tourJoueur.points < 2 || tourJoueur2.points < 2) {
+			// SI LES JOUEURS ONT MOINS DE 5 POINTS
+
+			}else if (tourJoueur.points < 5 || tourJoueur2.points < 5) {
 					
 					marqueurs = {};
 					marqueurs.pseudo = query.pseudo;
@@ -145,6 +149,8 @@ var trait = function (req, res, query) {
 					page = page.supplant(marqueurs);
 
 			}
+
+		// SEUL LE JOUEUR 1 A JOUER
 
 		} else {
 
@@ -159,9 +165,13 @@ var trait = function (req, res, query) {
 
 		}
 
+		// EN CAS DE MAUVAISE REPONSE
+
 	} else {
 
-		if(tourJoueur2.points > 1 && tourJoueur.points < tourJoueur2.points) {
+		//SI LE JOUEUR 1 A PLUS DE POINTS APRES LE MEME NOMBRE DE TOUR
+
+		if(tourJoueur2.points > 4 && tourJoueur.points < tourJoueur2.points) {
 
 			page = fs.readFileSync('perd.html', 'UTF-8');
 			marqueurs = {};
@@ -181,6 +191,8 @@ var trait = function (req, res, query) {
 		contenu_connectes = JSON.stringify(listeConnectes);
 		fs.writeFileSync("connectes.json", contenu_connectes, 'UTF-8');
 
+		// MEME NOMBRE DE POINTS
+
 		} else {
 
 				marqueurs = {};
@@ -197,7 +209,7 @@ var trait = function (req, res, query) {
 	}
 
 
-	
+	// ON AJOUTE UN TOUR ET ON RETIRE LA QUESTION DE LA LISTE 	
 	maPartie[0].tour = Number(maPartie[0].tour) +1;
 	tourJoueur.question.splice(0, 1);
 

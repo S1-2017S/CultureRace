@@ -4,6 +4,7 @@ background-image: url(https://cdn.discordapp.com/attachments/380338031326134272/
 -moz-background-size: cover;
 -o-background-size: cover;
 background-size: cover;
+background-repeat: no-repeat;
 }
 
 .accueil{

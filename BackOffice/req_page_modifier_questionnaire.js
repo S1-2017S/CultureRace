@@ -46,7 +46,7 @@ var trait = function (req, res, query) {
 		affichage = affichage + "Question : <input type='textarea' name='questions" + i + "' value='" + contenu[i].question + "' size='60px'><br>"
 		affichage = affichage + "<input type='radio' name='reponse" + i + "' &nbsp "+ br0 +"><input type='textarea' name='reponse0' value= '" + contenu[i].reponses[0] + "'><br>"
 		affichage = affichage + "<input type='radio' name='reponse" + i + "' &nbsp "+ br1 +"><input type='textarea' name='reponse1' value= '" + contenu[i].reponses[1] + "'><br>"
-		affichage = affichage + "<input type='radio' name='reponse" + i + "' &nbsp "+ br2 +"><input type='textarea' name='reponse2' value='" + contenu[i].reponses[2] + "'><br>"
+		affichage = affichage + "<input type='radio' name='reponse" + i + "' &nbsp "+ br2 +"><input type='textarea' name='reponse2' value= '" + contenu[i].reponses[2] + "'><br>"
 		affichage = affichage + "<input type='radio' name='reponse" + i + "' &nbsp " +br3 +"><input type='textarea' name='reponse3' value= '" + contenu[i].reponses[3] + "'><br><br>\n"
 	}
 

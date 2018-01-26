@@ -95,6 +95,6 @@ var traite_requete = function (req, res) {
 //-------------------------------------------------------------------------
 
 var mon_serveur = http.createServer(traite_requete);
-var port = process.arvg[2];
+var port = process.argv[2];
 console.log("Serveur en ecoute sur port " + port);
 mon_serveur.listen(port);

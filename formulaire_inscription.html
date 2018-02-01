@@ -3,19 +3,22 @@
 <head>
 <meta http-equiv='content-type' content='text/html; charset=utf-8'/>
 <title>Création compte></title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-<h1> Creation de compte</h1>
+<body class="accueil2">
+<h1 class="acc_crea">Creation de compte</h1>
 {erreur}
+<div class="inscription">
 <form action="/req_inscrire" method="GET">
-<label>Pseudo: </label><input type="text" name="pseudo" value="">
+<label>Pseudo: </label><input type="text" name="pseudo" value="" class="pseudo1">
 <br/>
-<label>Mot de passe: </label><input type="text" name="password" value="">
+<p class="pw2"><label>Mot de passe: </label><input type="text" name="password" value=""></p>
 <br/>
 <button name="action" value="creer">Créer compte</button>
 </form>
+<br>
 <a href="req_commencer"><button name="action" value="retour">Retour</button></a>
-
-<p><i> Souvenez-vous de vous de vos identifiants pour ne pas avoir besoin de recréer un compte la prochaine fois!</i></p> 
+</div>
+<p class="useless"><i> Souvenez-vous de vous de vos identifiants pour ne <br>pas avoir besoin de recréer un compte la prochaine fois!</i></p> 
 </body>
 </html>

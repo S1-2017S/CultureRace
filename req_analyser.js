@@ -14,11 +14,13 @@ var trait = function (req, res, query) {
 	var marqueurs;
 	var page;
 	var contenu_questionnaire;
+	var la_question;
 	var contenu_fichier;
 	var contenu_connectes;
 	var monQuestionnaire = [];
 	var listeConnectes = [];
 	var maPartie = [];
+	var Maquestion = [];
 	var i;
 	var n;
 	var rep;
@@ -41,6 +43,8 @@ var trait = function (req, res, query) {
 		if(listeConnectes[i].pseudo === query.pseudo) {
 			contenu_fichier = fs.readFileSync("partie"+listeConnectes[i].NP+".json", 'UTF-8');
 			maPartie = JSON.parse(contenu_fichier);
+			la_question = fs.readFileSync("question_"+listeConnectes[i].NP+".json", 'UTF-8');
+			Maquestion = JSON.parse(la_question);
 			Player = listeConnectes[i].adv
 			joueur = true;
 		} else {
@@ -70,6 +74,7 @@ var trait = function (req, res, query) {
 	if(rep === bonRep) {
 
 		// SI OUI
+
 		tourJoueur.points =  Number(tourJoueur.points) + 1;
 
 		contenu_fichier = JSON.stringify(maPartie);
@@ -125,28 +130,42 @@ var trait = function (req, res, query) {
 
 			// EN CAS D'EGALITE - MORT SUBITE
 			} else if (tourJoueur.points === tourJoueur2.points){
+					
+					Maquestion[0] = tourJoueur.question[0];
 
 					marqueurs = {};
 					marqueurs.pseudo = query.pseudo;
+					marqueurs.q = monQuestionnaire[Maquestion[0]].question;
+					marqueurs.r = monQuestionnaire[Maquestion[0]].reponses[monQuestionnaire[Maquestion[0]].br];
 					marqueurs.j1 = query.pseudo;
 					marqueurs.j2 = Player;
 					marqueurs.score1 = maPartie[1].J1.points;
 					marqueurs.score2 = maPartie[1].J2.points;
 					page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 					page = page.supplant(marqueurs);
+
+					la_question = JSON.stringify(Maquestion);
+					fs.writeFileSync("question_"+listeConnectes[i].NP+".json",la_question , 'UTF-8');
 
 			// SI LES JOUEURS ONT MOINS DE 5 POINTS
 
-			}else if (tourJoueur.points < 5 || tourJoueur2.points < 5) {
+			}else {
 					
+					Maquestion[0] = tourJoueur.question[0];
+
 					marqueurs = {};
 					marqueurs.pseudo = query.pseudo;
+					marqueurs.q = monQuestionnaire[Maquestion[0]].question;
+					marqueurs.r = monQuestionnaire[Maquestion[0]].reponses[monQuestionnaire[Maquestion[0]].br];
 					marqueurs.j1 = query.pseudo;
 					marqueurs.j2 = Player;
 					marqueurs.score1 = maPartie[1].J1.points;
 					marqueurs.score2 = maPartie[1].J2.points;
 					page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 					page = page.supplant(marqueurs);
+
+					la_question = JSON.stringify(Maquestion);
+					fs.writeFileSync("question_"+listeConnectes[i].NP+".json",la_question , 'UTF-8');
 
 			}
 
@@ -154,14 +173,21 @@ var trait = function (req, res, query) {
 
 		} else {
 
+				Maquestion[0] = tourJoueur.question[0];
+
 				page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 				marqueurs = {};
 				marqueurs.pseudo = query.pseudo;
+				marqueurs.q = monQuestionnaire[Maquestion[0]].question;
+				marqueurs.r = monQuestionnaire[Maquestion[0]].reponses[monQuestionnaire[Maquestion[0]].br];
 				marqueurs.j1 = query.pseudo;
 				marqueurs.j2 = Player;
 				marqueurs.score1 = maPartie[1].J1.points;
 				marqueurs.score2 = maPartie[1].J2.points;
 				page = page.supplant(marqueurs);
+
+				la_question = JSON.stringify(Maquestion);
+				fs.writeFileSync("question_"+listeConnectes[i].NP+".json",la_question , 'UTF-8');
 
 		}
 
@@ -176,6 +202,7 @@ var trait = function (req, res, query) {
 			page = fs.readFileSync('perd.html', 'UTF-8');
 			marqueurs = {};
 			marqueurs.pseudo = query.pseudo
+			marqueurs.q = monQuestionnaire[Maquestion[0]].question;
 			page = page.supplant(marqueurs);
 
 			joueur = false;
@@ -195,14 +222,21 @@ var trait = function (req, res, query) {
 
 		} else {
 
+				Maquestion[0] = tourJoueur.question[0];
+
 				marqueurs = {};
 				marqueurs.pseudo = query.pseudo;
+				marqueurs.q = monQuestionnaire[Maquestion[0]].question;
+				marqueurs.r = monQuestionnaire[Maquestion[0]].reponses[monQuestionnaire[Maquestion[0]].br];
 				marqueurs.j1 = query.pseudo;
 				marqueurs.j2 = Player;
 				marqueurs.score1 = maPartie[1].J1.points;
 				marqueurs.score2 = maPartie[1].J2.points;
 				page = fs.readFileSync('joueur_passif.html', 'UTF-8');
 				page = page.supplant(marqueurs);
+
+				la_question = JSON.stringify(Maquestion);
+				fs.writeFileSync("question_"+listeConnectes[i].NP+".json",la_question , 'UTF-8');
 
 		}
 

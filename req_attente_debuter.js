@@ -22,9 +22,13 @@ var trait = function (req, res, query) {
 	var maPartie = [];
 	var questionnaire;
 	var nouvellePartie;
+	var Maquestion = [];
+	var la_question;
 	var n;
 	var i;
 	var Joueur;
+	var r;
+
 
 	contenu_fichier = fs.readFileSync("connectes.json", 'UTF-8');
 	listeConnectes = JSON.parse(contenu_fichier);
@@ -56,6 +60,8 @@ var trait = function (req, res, query) {
 	contenu_partie = fs.readFileSync("partie"+query.pseudo+".json", 'UTF-8');
 	maPartie = JSON.parse(contenu_partie);
 
+	r = maPartie[1].J1.question[0];
+
 
 	questionnaire  = {};
 	questionnaire.question = monQuestionnaire[maPartie[1].J1.question[0]].question;
@@ -84,6 +90,11 @@ var trait = function (req, res, query) {
 	marqueurs.score1 = maPartie[1].J1.points;
 	marqueurs.score2 = maPartie[1].J2.points;
 	page = page.supplant(marqueurs);
+
+	Maquestion.push(r);
+
+	la_question = JSON.stringify(Maquestion);
+	fs.writeFileSync("question_"+query.pseudo+".json", la_question, 'UTF-8');
 
 
 }

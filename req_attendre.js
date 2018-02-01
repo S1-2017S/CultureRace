@@ -55,7 +55,7 @@ var trait = function (req, res, query) {
 	// SI IL N'Y A PERSONNE EN SALLE D'ATTENTE
 	if(Joueur === false) {
 
-	// ON MODIFIE L'ETAT DE LA PERSONNE PUIS ON LE REECRIT DANS LE JSON
+	// ON MODIFIE L'ETAT DE LA PERSONNE PUIS ON REECRIT DANS LE JSON
 		nouveau = {};
 		nouveau.pseudo = query.pseudo;
 		nouveau.etat = "ATTENTE";
@@ -73,7 +73,7 @@ var trait = function (req, res, query) {
 
 		page = fs.readFileSync('salle_attente.html', 'UTF-8');
 
-		// ON LE CREE LE JSON DE LA PARTIE;
+		// ON CREE LE JSON DE LA PARTIE;
 
 		contenu = fs.readFileSync("questionnaire.json", "utf-8");
 		questionnaire = JSON.parse(contenu);
@@ -103,21 +103,17 @@ var trait = function (req, res, query) {
 		contenu_partie = JSON.stringify(maPartie);
 		fs.writeFileSync("partie"+query.pseudo+".json", contenu_partie, 'UTF-8');
 
-
+	// SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE, LE JOUEUR EST REDIRIGE EN PAGE PASSIF
 
 	} else {
 
-	// SI QUELQU'UN EST DEJA EN SALLE D'ATTENTE, ALORS LE JOUEUR EST REDIRIGE VERS LA PAGE JOUEUR PASSIF
 
 		contenu_partie = fs.readFileSync("partie"+J2+".json", 'UTF-8');
 		maPartie = JSON.parse(contenu_partie);
 
-	// ON LIT PUIS ON MODIFIE ET ENFIN ON REECRIT LE JSON DES JOUEURS CONNECTES
+	// ON LIT, MODIFIE ET ON REECRIT LE JSON DES JOUEURS CONNECTES
 
-		contenu_partie = JSON.stringify(maPartie);
-		fs.writeFileSync("partie"+J2+".json", contenu_partie, 'UTF-8');
-
-		nouveauJ1 = {}
+		nouveauJ1= {}
 		nouveauJ1.pseudo = query.pseudo;
 		nouveauJ1.etat = "JEU";
 		nouveauJ1.adv = J2;
@@ -150,6 +146,7 @@ var trait = function (req, res, query) {
 		marqueurs  = {};
 		marqueurs.pseudo = query.pseudo;
 		marqueurs.j2 = query.pseudo;
+		marqueurs.q = ""
 		marqueurs.j1 = J2;
 		marqueurs.score1 = maPartie[1].J1.points;
 		marqueurs.score2 = maPartie[1].J2.points;
@@ -159,7 +156,7 @@ var trait = function (req, res, query) {
 
 	res.writeHead(200, {'Content-Type': 'text/html'});
 	res.write(page)
-		res.end();
+	res.end();
 };
 
 //-------------------------------------------------------------------------

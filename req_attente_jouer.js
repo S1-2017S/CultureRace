@@ -18,6 +18,8 @@ var trait = function (req, res, query) {
 	var contenu_partie;
 	var contenu_connectes;
 	var listeConnectes = [];
+	var la_question;
+	var Maquestion = [];
 	var monQuestionnaire = [];
 	var questionnaire;
 	var maPartie = [];
@@ -36,7 +38,6 @@ var trait = function (req, res, query) {
 
 	contenu_connectes = fs.readFileSync("connectes.json", 'UTF-8');
 	listeConnectes = JSON.parse(contenu_connectes);
-
 
 	trouve = false;
 	i = 0;
@@ -71,6 +72,8 @@ var trait = function (req, res, query) {
 			if(listeConnectes[i].pseudo === query.pseudo) {
 				contenu_partie = fs.readFileSync("partie"+listeConnectes[i].NP+".json", 'UTF-8');
 				maPartie = JSON.parse(contenu_partie);
+				la_question = fs.readFileSync("question_"+listeConnectes[i].NP+".json", 'UTF-8');
+				Maquestion = JSON.parse(la_question);
 				joueur = true;
 			} else {
 				i++;
@@ -83,7 +86,7 @@ var trait = function (req, res, query) {
 
 				questionnaire = {};
 				questionnaire.question = monQuestionnaire[maPartie[1].J1.question[0]].question
-					questionnaire.reponses1 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[0];
+				questionnaire.reponses1 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[0];
 				questionnaire.reponses2 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[1];
 				questionnaire.reponses3 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[2];
 				questionnaire.reponses4 = monQuestionnaire[maPartie[1].J1.question[0]].reponses[3];
@@ -105,6 +108,13 @@ var trait = function (req, res, query) {
 
 				marqueurs = {};
 				marqueurs.pseudo = query.pseudo;
+				if(tour === 0) {
+					marqueurs.r ="";
+					marqueurs.q = "";
+				} else {
+					marqueurs.r = monQuestionnaire[Maquestion[0]].reponses[monQuestionnaire[Maquestion[0]].br];
+					marqueurs.q = monQuestionnaire[Maquestion[0]].question;
+				}
 				marqueurs.j1 = query.pseudo;
 				marqueurs.j2 = Player;
 				marqueurs.score1 = maPartie[1].J1.points;
@@ -119,6 +129,13 @@ var trait = function (req, res, query) {
 
 				marqueurs = {};
 				marqueurs.pseudo = query.pseudo;
+				if(tour === 0) {
+					marqueurs.r ="";
+					marqueurs.q = "";
+				} else {
+					marqueurs.r = monQuestionnaire[Maquestion[0]].reponses[monQuestionnaire[Maquestion[0]].br];
+					marqueurs.q = monQuestionnaire[Maquestion[0]].question;
+				}
 				marqueurs.j2 = query.pseudo;
 				marqueurs.j1 = Player;
 				marqueurs.score1 = maPartie[1].J1.points;
@@ -130,7 +147,7 @@ var trait = function (req, res, query) {
 
 				questionnaire = {};
 				questionnaire.question = monQuestionnaire[maPartie[1].J2.question[0]].question
-					questionnaire.reponses1 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[0];
+				questionnaire.reponses1 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[0];
 				questionnaire.reponses2 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[1];
 				questionnaire.reponses3 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[2];
 				questionnaire.reponses4 = monQuestionnaire[maPartie[1].J2.question[0]].reponses[3];

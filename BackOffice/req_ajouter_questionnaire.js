@@ -14,32 +14,35 @@ var trait = function (req, res, query) {
 	var marqueurs;
 	var i;
 	var j;
-	var k;
-	var radios;
 	var bloc;
 	var questionnaire;
 	var reponse = [];
 
 	questionnaire = [];
-	//console.log(query);
 	for(i = 0; i < query.number; i++){
 		bloc = {};
 		bloc.question = query["questions" + String(i)];
 		for(j = 0; j < 4; j++){
 			reponse[j] = query["reponse" + String(j)];
 			bloc.reponse = reponse;
-			if(query["reponse" + String(j)] = "on"){
-				br[j] = j;
+			if(query["Q" + i + "_bon"] === "0"){
+				bloc.br = 0;
+			}else if(query["Q" + i + "_bon"] === "1"){
+				bloc.br = 1;
+			}else if(query["Q" + i + "_bon"] === "2"){
+				bloc.br = 2;
+			}else if(query["Q" + i + "_bon"] === "3"){
+				bloc.br = 3;
 			}
-			questionnaire.push(bloc);
 		}
+		questionnaire.push(bloc);
 	}
 	questionnaire = JSON.stringify(questionnaire);
-	fs.writeFileSync("test.json", questionnaire, "UTF-8");
+	fs.writeFileSync(query.nomQ + ".json", questionnaire, "UTF-8");
 
 	page = fs.readFileSync('questionnaire_ajoute.html','UTF-8');
 	marqueurs = {};
-	marqueurs.nvQ = "";
+	marqueurs.nvQ = query.nomQ;
 	page = page.supplant(marqueurs);
 
 	res.writeHead(200, {'Content-Type':'text/html'});

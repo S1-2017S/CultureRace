@@ -50,5 +50,3 @@ var trait = function(req, res, pathname) {
 }
 
 module.exports = trait;
-
-

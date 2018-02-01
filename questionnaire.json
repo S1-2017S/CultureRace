@@ -1,116 +1,105 @@
 [
 	{
-		"question" : "en quelle année la france gagnais la coupe du monde ?",
+		"question" : "Quel célèbre dictateur dirigea l'URSS des années 1920 à 1953?",
 		"reponses": [
-						"1997",
-						"2006",
-						"2009",
-						"1998"
-					],
-		"br" : 2
-	}
-	,
-	{
-		"question" : "Quel sont les couleur du drapeau marocain ?",
-		"reponses": [
-						"bleu, blanc, rouge",
-						"rouge et vert",
-						"vert et blanc",
-						"rouge et blanc"
+						"Molotov",
+						"Staline",
+						"Lénine",
+						"Trotski"
 					],
 		"br" : 1
 	}
 	,
 	{
-		"question" : "a quel age est on sexuellement majeur ?",
+		"question" : "Par quel mot désigne-t-on une belle mère cruelle?",
 		"reponses": [
-						"15 ans",
-						"27 ans",
-						"18 ans",
-						"15 ans et 2 mois"
+						"Chenapan",
+						"Godiche",
+						"Jocrisse",
+						"Marâtre"
 					],
 		"br" : 3
 	}
 	,
 	{
-		"question" : "qui est le meilleur professeur de l'histoire ?",
+		"question" : "Parmi les animaux suivants, lequel peut se déplacer le plus rapidement ?",
 		"reponses": [
-						"P.Thire",
-						"Dumbledor",
-						"S.skinner",
-						"Kakashi seinsei"
+						"Le chevreuil",
+						"Le léopard",
+						"Le springbok",
+						"Le guépard"
 					],
-		"br" : 0
+		"br" : 3
 	}
 	,
 	{
-		"question" : "De quel film vient la célèbre réplique imotep ?",
+		"question" : "Qui s'est déclaré 'premier flic de France'?",
 		"reponses": [
-						"Asterix et Obelix, mission cléopatre",
-						"La haine",
-						"Scary movie",
-						"La momie"
+						"Nicolas Sarkosy",
+						"Charles de Gaule",
+						"Georges Clemenceau",
+						"Manuel Valls"
 					],
-		"br" : 0
+		"br" : 2
 	}
 	,
 	{
-		"question" : "en quelle année hitler a atteint le pouvoir ?",
+		"question" : "En quelle année Hitler a atteint le pouvoir?",
 		"reponses": [
 						"1933",
-						"1927",
-						"2017",
-						"1937"
+						"1937",
+						"1929",
+						"1931"
 					],
 		"br" : 0
 	}
 	,
 	{
-		"question" : "Qui est l'auteur de la célèbre chanson beat it ?",
+		"question" : "Quel pays a décidé par referundum de quitter l'Union européenne?",
 		"reponses": [
-						"Michael jackson",
-						"B.I.G",
-						"Booba",
-						"fatal bazooka"
-					],
-		"br" : 0
-	}
-	,
-	{
-		"question" : "Qui est l'auteur de 'i will always love you' ?",
-		"reponses": [
-						"Whitney Houston",
-						"Amy Winehouse",
-						"Alicia Keys",
-						"kenza farah"
-					],
-		"br" : 0
-	}
-	,
-	{
-		"question" : "Qui est l'entraineur du Real madrid ?",
-		"reponses": [
-						"Karim benzema",
-						"Zinedine Zidane",
-						"Henry Fumey-Humbert",
-						"Florentino Perez"
+						"La Suède",
+						"Le Royaume-Uni",
+						"La Pologne",
+						"L'Islande"
 					],
 		"br" : 1
 	}
 	,
 	{
-		"question" : "en quelle année est sorti le seigneur des anneaux ?",
+		"question" : "Combien de jour compte une année bisextile?",
 		"reponses": [
-						"2001",
-						"2004",
-						"2002",
-						"1994"
+						"363",
+						"365",
+						"364",
+						"366"
 					],
-		"br" : 0
+		"br" : 3
 	}
 	,
 	{
-		"question" : "En quelle année ont eu lieu les attentats du 11/09 ?",
+		"question" : "Qui a composé 'L'Ode à la joie', l'hymne de l'Union européenne ?",
+		"reponses": [
+						"Haydin",
+						"Beethoven",
+						"Mozart",
+						"Wagner"
+					],
+		"br" : 1
+	}
+	,
+	{
+		"question" : "Quel est l'athlète le plus titré de l'histoire des Jeux Olympiques ?",
+		"reponses": [
+						"Usain Bolt",
+						"Michael Johnson",
+						"Michael Phelps",
+						"Carl Lewis"
+					],
+		"br" : 2
+	}
+	,
+	{
+		"question" : ":En quelle année ont eu lieu les attentats du 11/09 ?",
 		"reponses": [
 						"2000",
 						"2001",
@@ -121,122 +110,100 @@
 	}
 	,
 	{
-		"question" : "Quel est le vrai nom du célèbre Mohamed Ali ?",
+		"question" : "Parmi les marques de voiture suivantes, laquelle n'est pas allemande?",
 		"reponses": [
-						"Ali",
-						"Cassus ",
-						"Momo ",
-						"Mohamed"
+						"Audi",
+						"Volkswagen",
+						"Mercedes",
+						"Ford"
 					],
-		"br" : 1
+		"br" : 3
 	}
 	,
 	{
-		"question" : "En quelle année est mort michael jackson ?",
+		"question" : "En quelle année est mort Michael Jackson ?",
 		"reponses": [
 						"2009",
 						"2006",
-						"2018",
+						"2008",
 						"2005"
 					],
 		"br" : 0
 	}
 	,
 	{
-		"question" : "De quel pays vient le célèbre chanteur Maitre gims ?",
+		"question" : "De ces villes, laquelle est la plus peuplée (en comptant les banlieues) ?",
 		"reponses": [
-						"Congo",
-						"Cameroun",
-						"France",
-						"Somalie"
-					],
-		"br" : 0
-	}
-	,
-	{
-		"question" : "De quel pays est originaire Omar Sy ?",
-		"reponses": [
-						"Senegal",
-						"France",
-						"Cote d'ivoire",
-						"Guinée Konacry"
-					],
-		"br" : 0
-	}
-	,
-	{
-		"question" : "Quel est le premier pokemon qu'a eu sacha ?",
-		"reponses": [
-						"Carabaffe",
-						"Apatou",
-						"Dracofeu",
-						"Pikachu"
+						"Madrid",
+						"Berlin",
+						"Paris",
+						"Rome"
 					],
 		"br" : 2
 	}
 	,
 	{
-		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"question" : "En combien de temps la Terre tourne-t-elle autour du Soleil ?",
 		"reponses": [
-						"Islam",
-						"Boudhisme",
-						"Judaisme",
-						"Christianisme"
+						"1 mois",
+						"2 ans",
+						"365 jours",
+						"24h"
 					],
-		"br" : 1
+		"br" : 2
 	}
 	,
 	{
-		"question" : "Quel est le nom du druide du village d'Astérix?",
+		"question" : "Quel philosophe conclut 'Je pense, donc je suis' ?",
 		"reponses": [
-						"Assurancetourix",
-						"Panoramix",
-						"Asterix",
-						"Abraracourcix"
+						"Descartes",
+						"Hegel",
+						"Socrate",
+						"Heidegger"
 					],
-		"br" : 1
+		"br" : 0
 	}
 	,
 	{
-		"question" : "Quel feuille se trouve au centre du drapeau canadien?",
+		"question" : "Quel est le plus petit Etat du monde ?",
 		"reponses": [
-						"erable",
-						"chêne",
-						"noisetier",
-						"cerisier"
+						"Andorre",
+						"Saint-Martin",
+						"Le Vatican",
+						"Monaco"
 					],
-		"br" : 1
+		"br" : 2
 	}
 	,
 	{
-		"question" : "Laquelle des trois n'est pas une religion monothéiste ?",
+		"question" : "Le Ballon d'or 2005 ? ",
 		"reponses": [
-						"Islam",
-						"Boudhisme",
-						"Judaisme",
-						"Christianisme"
+						"Zidane",
+						"Messi",
+						"Ronaldinho",
+						"Cristiano Ronaldo"
 					],
-		"br" : 1
+		"br" : 2
 	}
 	,
 	{
-		"question" : "Lequel de ces 3 personnages n'a pas été président ?",
+		"question" : "Quel est le plus grand Etat du monde ?",
 		"reponses": [
-						"F.Fillon",
-						"J.Chirac",
-						"E.Macron",
-						"J-M Le Pen"
+						"La Russie",
+						"Les Etats-Unis",
+						"La Chine",
+						"Le Canada"
 					],
-		"br" : 3
+		"br" : 0
 	}
 	,
 	{
 		"question" : "Qui a écrit les misérables?",
 		"reponses": [
-						"P.verlaine",
-						"V.Hugo",
+						"Paul Verlaine",
+						"Victor Hugo",
 						"Robespierre",
-						"JUL"
+						"Voltaire"
 					],
 		"br" : 1
 	}
@@ -246,86 +213,64 @@
 		"reponses": [
 						"Einstein",
 						"Les Curie",
-						"A.Turing",
+						"Alan Turing",
 						"Thalès"
 					],
 		"br" : 2
 	}
 	,
 	{
-		"question" : "Quel est le n°1 des ventes dans le  monde informatique ?",
+		"question" : "Qui a interprété la bande originale du Titanic ?",
 		"reponses": [
-						"Lenovo",
-						"Acer",
-						"Asus",
-						"Apple"
-					],
-		"br" : 3
-	}
-	,
-	{
-		"question" : "Qui est le n°1 des ventes en telephonie ?",
-		"reponses": [
-						"Samsung",
-						"Acer",
-						"Apple",
-						"Nokia"
+						"Celine Dion",
+						"Alizée",
+						"Edith Piaf",
+						"Zazie"
 					],
 		"br" : 0
 	}
 	,
 	{
-		"question" : "Qui a écrit Les fourberies de Scapin ?",
+		"question" : "Qui a chanté 'I will always love you' ?",
 		"reponses": [
-						"Molière",
-						"Racine",
-						"Corneille",
-						"Bridou"
+						"Mariah Carrey",
+						"Whitney Houston",
+						"Alicia Keys",
+						"Beyoncé"
 					],
 		"br" : 1
 	}
 	,
 	{
-		"question" : "Qui est le président des etats-unis ?",
+		"question" : "En quelle année Christophe Colomb débarque-t-il en Amérique ?",
 		"reponses": [
-						"Obama",
-						"Trump",
-						"Macron",
-						"Bush"
+						"1453",
+						"1492",
+						"1602",
+						"1515"
 					],
 		"br" : 1
-	}
-	,
-	{
-		"question" : "Qui ont des chapeaux ronds ?",
-		"reponses": [
-						"Catalans",
-						"Auvergnats",
-						"Bretons",
-						"Gaulois"
-					],
-		"br" : 2
 	}
 	,
 	{
 		"question" : "Qui a construit la tour eiffel ?",
 		"reponses": [
 						"Leon Blum",
-						"Gustave eiffel",
-						"José eiffel",
-						"Gaston eiffel"
+						"Gustave Eiffel",
+						"Guillaume Eiffel",
+						"Eugène Hausmann"
 					],
 		"br" : 1
 	}
 	,
 	{
-		"question" : "Qui est le courreur le plus rapide de l'histoire ?",
+		"question" : "Sur quelle chaîne de montagnes l'Everest se situe-t-il ?",
 		"reponses": [
-						"Usain Bolt",
-						"Jason Blake",
-						"Asapha Powell",
-						"Forest"
+						"Les Alpes",
+						"L'Himalaya",
+						"L'Oural",
+						"Les Appalaches"
 					],
-		"br" : 0
+		"br" : 1
 	}
 ]
